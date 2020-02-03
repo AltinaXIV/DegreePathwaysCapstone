@@ -1,4 +1,4 @@
 # DegreePathwaysCapstone
 
 ## Team 
-Jessica Chan, Giovanni Panero, Eden Petri, Scott Sheffer
+Jessica Chan, Giovanni Panaro, Eden Petri, Scott Sheffer
