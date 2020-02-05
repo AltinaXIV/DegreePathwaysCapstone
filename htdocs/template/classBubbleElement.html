@@ -1,10 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Title</title>
-    </head>
-    <body>
-        
-    </body>
-</html>
+<!-- To use this, use the custom element <class-bubble> -->
+
+<template id="classBubbleTemplate">
+    <link rel="stylesheet" type="text/css" href="/css/classBubble.css">
+    <div class="class-bubble">
+        <slot name="course-number">XXX-0000</slot>
+        <slot name="course-name">COURSE NAME</slot>
+    </div>
+
+</template>
+
+
+<script src="../js/class-bubble.js"></script>
