@@ -2,4 +2,6 @@
 !.gitignore
 !README.md
 !toDo.md
-!htdocs
+!/htdocs/
+!/htdocs/*
+!/htdocs/**/*
