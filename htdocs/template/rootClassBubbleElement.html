@@ -1,12 +1,10 @@
-<!-- To use this, use the custom element <class-bubble> -->
+<!-- To use this, use the custom element <root-class-bubble> -->
 
 <template id="classBubbleTemplate">
     <link rel="stylesheet" type="text/css" href="/css/classBubble.css">
-    <div class="class-bubble">
-        <slot name="bubble-type">
-            <slot name="course-number">XXX-0000</slot>
-            <slot name="course-name">COURSE NAME</slot>
-        </slot>
+    <div class="root-class-bubble">
+        <slot name="course-number">XXX-0000</slot>
+        <slot name="course-name">COURSE NAME</slot>
     </div>
 
 </template>

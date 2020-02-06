@@ -41,8 +41,11 @@
         <title>DEMO - Class Bubbles</title>
     </head>
     <body>
-        <?php include '../template/classBubbleElement.html' ?>
+        <?php include '../template/rootClassBubbleElement.html' ?>
         <h1>Root bubble</h1>
-        <class-bubble></class-bubble>
+        <root-class-bubble>
+            <div slot="course-number">CS 1980</div>
+            <div slot="course-name">TEAM PROJECT DESIGN & IMPLMNTN</div>
+        </root-class-bubble>
     </body>
 </html>

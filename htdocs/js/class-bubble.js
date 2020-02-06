@@ -8,4 +8,4 @@ class ClassBubble extends HTMLElement {
     }
 }
 
-customElements.define('class-bubble', ClassBubble);
+customElements.define('root-class-bubble', ClassBubble);
