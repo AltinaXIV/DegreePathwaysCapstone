@@ -1,14 +1,40 @@
-class BubbleElements extends HTMLElement {
+/**
+ * Attach tooltip to ClassBubble element
+ *
+ * @param {ShadowRoot} shadow
+ */
+function attachTooltip(shadow) {
+    "use strict";
+    let BreakException = {};
+
+    const childNodes = Array.from(shadow.childNodes);
+     try {
+         childNodes.forEach(childNode => {
+             if (childNode.nodeName === "DIV") {
+                 childNode.addEventListener("click", () => alert("SUCCESS"));
+                 throw BreakException;
+             }
+         });
+     } catch (e) {
+         if (e !== BreakException) {
+             throw e;
+         }
+     }
+
+}
+
+class RootClassBubble extends HTMLElement {
     constructor() {
         super();
 
         // Create shadow root. This will create HTML that is not shown in the source.
         const shadow = this.attachShadow({mode: 'open'});
         shadow.append(document.getElementById('rootClassBubbleTemplate').content.cloneNode(true));
+        attachTooltip(shadow);
     }
 }
 
-customElements.define('root-class-bubble', BubbleElements);
+customElements.define('root-class-bubble', RootClassBubble);
 
 
 class BranchClassBubble extends HTMLElement {
@@ -18,6 +44,7 @@ class BranchClassBubble extends HTMLElement {
         // Create shadow root. This will create HTML that is not shown in the source.
         const shadow = this.attachShadow({mode: 'open'});
         shadow.append(document.getElementById('branchClassBubbleTemplate').content.cloneNode(true));
+        attachTooltip(shadow);
     }
 }
 
@@ -30,6 +57,7 @@ class LeafClassBubble extends HTMLElement {
         // Create shadow root. This will create HTML that is not shown in the source.
         const shadow = this.attachShadow({mode: 'open'});
         shadow.append(document.getElementById('leafClassBubbleTemplate').content.cloneNode(true));
+        attachTooltip(shadow);
     }
 }
 
@@ -42,6 +70,7 @@ class StandAloneClassBubble extends HTMLElement {
         // Create shadow root. This will create HTML that is not shown in the source.
         const shadow = this.attachShadow({mode: 'open'});
         shadow.append(document.getElementById('stand-aloneClassBubbleTemplate').content.cloneNode(true));
+        attachTooltip(shadow);
     }
 }
 

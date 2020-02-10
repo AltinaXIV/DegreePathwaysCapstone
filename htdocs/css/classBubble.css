@@ -18,4 +18,17 @@
     border: 2px solid #0e90d2;
     display: inline-block;
     padding: 5px;
+    cursor: pointer;
+}
+
+.class-bubble:hover .bubble-tooltip-span {
+    display: block;
+    position: fixed;
+    overflow: hidden;
+}
+
+.bubble-tooltip-span {
+    display: none;
+    text-decoration: none;
+    position: relative;
 }
