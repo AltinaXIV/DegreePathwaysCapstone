@@ -41,12 +41,7 @@
         <title>DEMO - Class Bubbles</title>
     </head>
     <body>
-        <?php
-            include '../template/rootClassBubbleElement.html';
-            include '../template/branchClassBubbleElement.html';
-            include '../template/leafClassBubbleElement.html';
-            include '../template/standAloneClassBubbleElement.html';
-        ?>
+        <?php include '../template/bubbleElements.html' ?>
         <h1>Root bubble</h1>
         <root-class-bubble>
             <div slot="course-number">CS 1980</div>
