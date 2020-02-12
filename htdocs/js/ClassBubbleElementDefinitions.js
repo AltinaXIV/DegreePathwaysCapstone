@@ -10,8 +10,22 @@ function attachTooltip(shadow) {
     const childNodes = Array.from(shadow.childNodes);
      try {
          childNodes.forEach(childNode => {
-             if (childNode.nodeName === "DIV") {
-                 childNode.addEventListener("click", () => alert("SUCCESS"));
+             if (childNode.className === "branch-class-bubble class-bubble") {
+                 const subChildren = Array.from(childNode.childNodes);
+                 try {
+                     subChildren.forEach(subChild => {
+                        if (subChild.className === "bubble-tooltip-span") {
+                            subChild.style.left = 1000;
+
+                            throw BreakException;
+                        }
+                     });
+                 } catch (e) {
+                     if (e !== BreakException) {
+                         throw e;
+                     }
+                 }
+
                  throw BreakException;
              }
          });

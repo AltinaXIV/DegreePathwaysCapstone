@@ -23,12 +23,13 @@
 
 .class-bubble:hover .bubble-tooltip-span {
     display: block;
-    position: fixed;
+    position: absolute;
     overflow: hidden;
 }
 
 .bubble-tooltip-span {
     display: none;
     text-decoration: none;
-    position: relative;
+    z-index: 2;
+    background: #0000CC;
 }
