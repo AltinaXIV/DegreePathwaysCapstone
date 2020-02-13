@@ -19,17 +19,37 @@
     display: inline-block;
     padding: 5px;
     cursor: pointer;
+    width: 300px;
 }
 
 .class-bubble:hover .bubble-tooltip-span {
     display: block;
     position: absolute;
     overflow: hidden;
+    animation-name: appear;
+    animation-duration: 300ms;
+    animation-fill-mode: forwards;
 }
 
 .bubble-tooltip-span {
     display: none;
+    opacity: 0;
     text-decoration: none;
     z-index: 2;
-    background: #0000CC;
+    background: darkslategray;
+    width: 300px;
+    max-height: 200px;
+    border-radius: 10px 10px 10px 10px;
+    padding: 5px;
 }
+
+@keyframes appear {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 100;
+    }
+}
+
+/* TODO: Perhaps add a fade out animation? This may be non-trivial. */

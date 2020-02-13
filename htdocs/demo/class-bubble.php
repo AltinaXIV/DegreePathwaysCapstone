@@ -43,24 +43,26 @@
     <body>
         <?php include '../template/bubbleElements.html' ?>
         <h1>Root bubble</h1>
-        <root-class-bubble>
+        <root-class-bubble href="http://www.example.com">
             <div slot="course-number">CS 1980</div>
             <div slot="course-name">TEAM PROJECT DESIGN & IMPLMNTN</div>
         </root-class-bubble>
         <h1>Branch bubble</h1>
-        <branch-class-bubble>
+        <branch-class-bubble href="http://www.example.com">
             <div slot="course-number">CS 1980</div>
             <div slot="course-name">TEAM PROJECT DESIGN & IMPLMNTN</div>
         </branch-class-bubble>
         <h1>Leaf bubble</h1>
-        <leaf-class-bubble>
+        <leaf-class-bubble href="http://www.example.com">
             <div slot="course-number">CS 1980</div>
             <div slot="course-name">TEAM PROJECT DESIGN & IMPLMNTN</div>
+            <h1 slot="bubble-tooltip">test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/></h1>
         </leaf-class-bubble>
         <h1>Stand-Alone bubble</h1>
-        <stand-alone-class-bubble>
+        <stand-alone-class-bubble href="http://www.example.com">
             <div slot="course-number">CS 1980</div>
             <div slot="course-name">TEAM PROJECT DESIGN & IMPLMNTN</div>
+            <div slot="bubble-tooltip">test</div>
         </stand-alone-class-bubble>
     </body>
 </html>
