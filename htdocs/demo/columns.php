@@ -1,16 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-    <style>
-        .row {
-        display: flex;
-        }
-        .column {
-        flex: 50%;
-        padding: 10px;
-        }
-    </style>
+
     <head>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="/css/default.css">
         <title>DEMO - Columns</title>
     </head>
     <body>
@@ -27,11 +20,12 @@
         
         <?php
            function generateColumn($count){
-            $col = '<div class="column">This is a column.</div>';
             foreach( range(1, $count) as $item){
-               if ($count > 0) echo $col;
+                $name= "column-" . $item ;
+               if ($count > 0) echo '<div class="column" name=' . $name .  '>This is a column.</div>';
             }
            };
         ?>
+        
     </body>
 </html>
