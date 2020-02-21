@@ -29,10 +29,10 @@ function attachElements(firstElement, secondElement) {
         svg.setAttribute("width", width.toString());
         let currentPositionY = e1y;
         svg.style.left = e1.getBoundingClientRect().right + "px";
-        svg.style.top = Math.max(e1y, e2y) + "px";
+        svg.style.top = (Math.max(e1y, e2y) - 10) + "px";
         if(e1y === e2y) {
             let line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-            line.setAttribute("x1", "0");
+            line.setAttribute"x1", "0");
             line.setAttribute("y1", "0");
             line.setAttribute("x2", width.toString());
             line.setAttribute("y2", "0");
