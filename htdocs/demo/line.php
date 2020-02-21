@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <style>
+
             #e1, #e2 {
                 position: relative;
             }
@@ -19,13 +20,10 @@
                 stroke: #0e84b5;
                 stroke-width: 2;
                 position: absolute;
-                left: 500px;
-                top: 0;
             }
             svg {
                 position: absolute;
                 z-index: -1;
-                left: 500px;
                 top: 0;
             }
         </style>

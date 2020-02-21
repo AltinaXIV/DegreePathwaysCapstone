@@ -22,17 +22,20 @@ function attachElements(firstElement, secondElement) {
 
         //First, create a curve that points the line in the proper y direction towards e2
         let currentPositionX = e1.getBoundingClientRect().right;
-        let e1centre = e1.getBoundingClientRect().bottom - (e1.getBoundingClientRect().bottom - e1.getBoundingClientRect().top) / 2;
-        let e2centre = e2.getBoundingClientRect().bottom - (e2.getBoundingClientRect().bottom - e2.getBoundingClientRect().top) / 2;
+        let e1y = e1.getBoundingClientRect().bottom - ((e1.getBoundingClientRect().bottom - e1.getBoundingClientRect().top) / 2);
+        let e2y = e2.getBoundingClientRect().bottom - (e2.getBoundingClientRect().bottom - e2.getBoundingClientRect().top) / 2;
         svg.setAttribute("height", window.innerHeight.toString());
-        svg.setAttribute("width", (e2.getBoundingClientRect().left - e1.getBoundingClientRect().right).toString());
-        let currentPositionY = e1centre;
-        if(e1centre === e2centre) {
+        let width = (e2.getBoundingClientRect().left - e1.getBoundingClientRect().right).toString();
+        svg.setAttribute("width", width.toString());
+        let currentPositionY = e1y;
+        svg.style.left = e1.getBoundingClientRect().right + "px";
+        svg.style.top = Math.max(e1y, e2y) + "px";
+        if(e1y === e2y) {
             let line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-            line.setAttribute("x1", currentPositionX.toString());
-            line.setAttribute("y1", currentPositionY.toString());
-            line.setAttribute("x2", e2.getBoundingClientRect().left.toString());
-            line.setAttribute("y2", e2centre.toString());
+            line.setAttribute("x1", "0");
+            line.setAttribute("y1", "0");
+            line.setAttribute("x2", width.toString());
+            line.setAttribute("y2", "0");
 
             svg.appendChild(line);
             document.querySelector("body").appendChild(svg);
