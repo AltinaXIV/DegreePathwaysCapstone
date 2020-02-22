@@ -4,28 +4,19 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="/css/default.css">
+        <script type="text/javascript" src='/js/columns.js'> </script>
         <title>DEMO - Columns</title>
     </head>
     <body>
-        <form action="columns.php" method="get-columns">
-        Columns: <input type="text" name="semesters"><br>
-        <input type="Submit">
-        </form><br>
-        
-        <?php $semesters=$_GET["semesters"] ?>
-        
-        <div class="row">
-            <?php generateColumn($semesters); ?>
-        </div>  
-        
-        <?php
-           function generateColumn($count){
-            foreach( range(1, $count) as $item){
-                $name= "column-" . $item ;
-               if ($count > 0) echo '<div class="column" name=' . $name .  '>This is a column.</div>';
-            }
-           };
-        ?>
+        <?php include '../template/bubbleElements.html' ?>
+
+        Columns: <input type="text" id="semesters"><br>
+        <button onclick="generateColumns()">Submit</button>
+
+        <div class="row" id="main-body"></div> 
+ 
+
+        <script></script>
         
     </body>
 </html>
