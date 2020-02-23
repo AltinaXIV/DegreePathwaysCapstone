@@ -3,7 +3,7 @@
  *
  * @param {ShadowRoot} shadow
  */
-function relocateTooltip(shadow) {
+/*function relocateTooltip(shadow) {
     "use strict";
 
     let BreakException = {};
@@ -52,7 +52,7 @@ function relocateTooltip(shadow) {
          }
      }
 
-}
+}*/
 
 
 /**
@@ -63,7 +63,7 @@ function relocateTooltip(shadow) {
 function attachFeatures(shadow) {
     "use strict";
 
-    shadow.addEventListener("mouseover", () => relocateTooltip(shadow));
+    //shadow.addEventListener("mouseover", () => relocateTooltip(shadow));
 }
 
 class RootClassBubble extends HTMLElement {

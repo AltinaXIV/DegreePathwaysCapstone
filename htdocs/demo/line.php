@@ -2,7 +2,10 @@
 <html lang="en">
     <head>
         <style>
-
+            html, body {
+                padding: 0;
+                margin: 0;
+            }
             #e1, #e2 {
                 position: relative;
             }
@@ -10,16 +13,9 @@
                 float: left;
                 width: 50%;
             }
-
-            .row:after {
-                content: "";
-                display: table;
-                clear: both;
-            }
             line {
                 stroke: #0e84b5;
                 stroke-width: 2;
-                position: absolute;
             }
             svg {
                 position: absolute;
@@ -61,7 +57,6 @@
                 e2.style.top = y + "px";
             }
         </script>
-        <button id="moveButton" onclick="moveElements()">Start Demo</button>
         <div class="row">
             <div class="col">
                 <root-class-bubble href="http://www.example.com" id="e1">
@@ -70,10 +65,10 @@
                 </root-class-bubble>
             </div>
             <div class="col">
-                <leaf-class-bubble href="http://www.example.com" id="e2">
+                <root-class-bubble href="http://www.example.com" id="e2">
                     <div slot="course-number">CS 1980</div>
                     <div slot="course-name">TEAM PROJECT DESIGN & IMPLMNTN</div>
-                </leaf-class-bubble>
+                </root-class-bubble>
             </div>
         </div>
         <script>
