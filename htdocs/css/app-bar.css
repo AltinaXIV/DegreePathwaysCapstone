@@ -1,0 +1,17 @@
+.material-nav-bar {
+    height: 56px;
+    background-color: #141b4d;
+}
+
+.menu-button {
+    background-color: #141b4d;
+    border: none;
+}
+
+.menu-button:focus {
+    outline: 0;
+}
+
+img {
+    pointer-events: none;
+}
