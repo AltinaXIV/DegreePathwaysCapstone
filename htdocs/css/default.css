@@ -1,17 +1,7 @@
-<<<<<<< HEAD
-.row {
-    display: flex;
-}
-
-.column {
-    flex: 50%;
-    padding: 10px;
-=======
 @import "app-bar.css";
 @import "left-nav.css";
 @import "md-animations/ripple.css";
 
 html, body {
     margin: 0;
->>>>>>> 7b49e9b96267df9838cf835756b690fa25df2e21
 }
