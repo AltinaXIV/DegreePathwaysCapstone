@@ -11,7 +11,7 @@
         <?php include '../template/bubbleElements.html' ?>
 
         Columns: <input type="text" id="semesters"><br>
-        <button onclick="generateColumns()">Submit</button>
+        <button onclick="generateColumns()">Submit</button><br><br>
 
         <div class="row" id="main-body"></div> 
  
