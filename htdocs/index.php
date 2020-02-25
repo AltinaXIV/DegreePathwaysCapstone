@@ -9,10 +9,11 @@
     </head>
     <body>
         <header class="material-nav-bar">
-            <button class="menu-button" ripple="ripple"><img height="48" width="48" alt="menu" src="/icon/menu.svg"></button>
+            <button class="menu-button" ripple="ripple" onclick="activateLeftNav()"><img height="50" width="50" alt="menu" src="/icon/menu.svg"></button>
         </header>
-        <script>
-            initializeRipple();
-        </script>
+        <div class="row">
+            <div class="left-nav-container" id="left-nav">test</div>
+        </div>
+        <script src="/js/home.js"></script>
     </body>
 </html>

@@ -32,7 +32,7 @@ function initializeRipple() {
         let ripple = ripples[i];
         let rippleContainer = document.createElement("div");
         rippleContainer.setAttribute("class", "ripple-container");
-        ripple.addEventListener("mousedown", e => {
+        ripple.addEventListener("mousedown", (e) => {
             showRipple(e, ripple, rippleContainer);
         });
         ripple.appendChild(rippleContainer);
