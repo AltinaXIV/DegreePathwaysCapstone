@@ -5,3 +5,13 @@
 html, body {
     margin: 0;
 }
+
+.row.pathway-body {
+    display: flex;
+}
+
+.column.pathway-body {
+    flex: 50%;
+    padding: 10px;
+
+}
