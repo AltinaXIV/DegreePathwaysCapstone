@@ -1,51 +1,55 @@
 // add a bubble to a given element (column) by id
 // temporarily places the argument course_no into the course-number slot
 // needs work and real data
-function addRootTo(id, course_no){
+function addRootTo(id, course_no, course_name){
     var elem = document.getElementById(id, course_no);
     var bubble = document.createElement("root-class-bubble");
     bubble.id = course_no;
     bubble.innerHTML= '<div slot="course-number">' + course_no + '</div>';
+    bubble.innerHTML+= '<div slot="course-name">' + course_name + '</div>';
     elem.appendChild(bubble);
     elem.appendChild(document.createElement("BR"));
 }
 
-function addBranchTo(id, course_no){
+function addBranchTo(id, course_no, course_name){
     var elem = document.getElementById(id, course_no);
     var bubble = document.createElement("branch-class-bubble");
     bubble.id = course_no;
     bubble.innerHTML= '<div slot="course-number">' + course_no + '</div>';
+    bubble.innerHTML+= '<div slot="course-name">' + course_name + '</div>';
     elem.appendChild(bubble);
     elem.appendChild(document.createElement("BR"));
 }
 
-function addLeafTo(id, course_no){
+function addLeafTo(id, course_no, course_name){
     var elem = document.getElementById(id, course_no);
     var bubble = document.createElement("leaf-class-bubble");
     bubble.id = course_no;
     bubble.innerHTML= '<div slot="course-number">' + course_no + '</div>';
+    bubble.innerHTML+= '<div slot="course-name">' + course_name + '</div>';
     elem.appendChild(bubble);
     elem.appendChild(document.createElement("BR"));
 }
 
-function addStandAloneTo(id, course_no){
+function addStandAloneTo(id, course_no, course_name){
     var elem = document.getElementById(id, course_no);
     var bubble = document.createElement("stand-alone-class-bubble");
     bubble.id = course_no;
     bubble.innerHTML= '<div slot="course-number">' + course_no + '</div>';
+    bubble.innerHTML+= '<div slot="course-name">' + course_name + '</div>';
     elem.appendChild(bubble);
     elem.appendChild(document.createElement("BR"));
 }
 
 // just a test function to place sample data
 function place(){
-    addRootTo("r1-c1", "MATH");
-    addBranchTo("r1-c2", "CS441");
-    addBranchTo("r3-c2", "CS445");
-    addLeafTo("r2-c3", "CS1501");
-    addRootTo("r3-c1","CS401");
-    addLeafTo("r3-c3", "CS449");
-    addLeafTo("r4-c2", "CS447");
+    addRootTo("r1-c1", "MATH", "course name");
+    addBranchTo("r1-c2", "CS441", "course name");
+    addBranchTo("r3-c2", "CS445", "course name");
+    addLeafTo("r2-c3", "CS1501", "course name");
+    addRootTo("r3-c1","CS401", "course name");
+    addLeafTo("r3-c3", "CS449", "course name");
+    addLeafTo("r4-c2", "CS447", "course name");
 }
 
 function drawTable() {
