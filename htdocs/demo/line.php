@@ -22,6 +22,10 @@
                 z-index: -1;
                 top: 0;
             }
+            root-class-bubble {
+                display: block;
+                width: 314px;
+            }
         </style>
         <title>Line Demo</title>
         <meta charset="UTF-8">
