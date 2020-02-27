@@ -14,15 +14,17 @@
             <button class="menu-button" ripple="ripple" onclick="activateLeftNav()"><img height="50" width="50" alt="menu" src="/icon/menu.svg"></button>
         </header>
         <div class="row">
-            <div class="left-nav-container" id="left-nav">test
+            <div class="left-nav-container" id="left-nav">
                 <br>
                 Semesters: <input type="text" id="semesters"><br>
-                <button onclick="generateColumns()">Submit</button><br><br>
-                <button onclick="test()">add sample bubbles</button><br><br>
+                <button onclick="demo()">CS Minor Demo</button><br><br>
             </div>
         </div>
 
-        <div class="row" id="main-body"></div>
+        <!-- <div class="row" id="main-body"></div> -->
+
+        <div id="main-body"></div>
+
 
         <script src="/js/home.js"></script>
         
