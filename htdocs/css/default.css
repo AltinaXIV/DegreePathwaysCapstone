@@ -1,3 +1,36 @@
+@import "app-bar.css";
+@import "left-nav.css";
+@import "md-animations/ripple.css";
+
+html, body {
+    margin: 0;
+}
+
+.table.pathway-body {
+    display: flex;
+}
+
+.row.pathway-body {
+    display: flex;
+}
+
+.column.pathway-body {
+    flex: 50%;
+    padding: 10px;
+
+}
+
+.table.pathway {
+    display: table;
+    width: 100%;
+  }
+
+td {
+    /* using fixed width for demo */
+    width: 400px;
+    height: 70px;
+}
+
 root-class-bubble {
     display: block;
     width: 314px;
