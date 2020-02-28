@@ -15,7 +15,12 @@
             }
             line {
                 stroke: #0e84b5;
-                stroke-width: 2;
+                stroke-width: 1;
+            }
+            path {
+                stroke: #0e84b5;
+                stroke-width: 1;
+                fill: transparent;
             }
             svg {
                 position: absolute;
