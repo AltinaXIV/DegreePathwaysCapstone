@@ -20,13 +20,15 @@
             svg {
                 position: absolute;
                 z-index: -1;
-                top: 0;
+                margin: 0;
+                padding: 0;
             }
-            root-class-bubble {
-                display: block;
-                width: 314px;
+            #moveButton {
+                position: absolute;
+                left: 400px;
             }
         </style>
+        <link rel="stylesheet" type="text/css" href="/css/default.css">
         <title>Line Demo</title>
         <meta charset="UTF-8">
     </head>
@@ -52,13 +54,15 @@
                     bottomBound -= Math.max(e1Height, e2Height);
                 }
 
-                let y = Math.random() * bottomBound;
+                let y = Math.floor(Math.random() * bottomBound);
 
                 e1.style.top = y + "px";
 
-                y = Math.random() * bottomBound;
+                y = Math.floor(Math.random() * bottomBound);
 
                 e2.style.top = y + "px";
+                attachElements(e1, e2);
+
             }
         </script>
         <div class="row">
@@ -69,12 +73,13 @@
                 </root-class-bubble>
             </div>
             <div class="col">
-                <root-class-bubble href="http://www.example.com" id="e2">
+                <leaf-class-bubble href="http://www.example.com" id="e2">
                     <div slot="course-number">CS 1980</div>
                     <div slot="course-name">TEAM PROJECT DESIGN & IMPLMNTN</div>
-                </root-class-bubble>
+                </leaf-class-bubble>
             </div>
         </div>
+        <button id="moveButton" onclick="moveElements()">Start Demo</button>
         <script>
             attachElements(document.getElementById("e1"), document.getElementById("e2"));
         </script>
