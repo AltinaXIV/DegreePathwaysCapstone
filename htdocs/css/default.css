@@ -30,3 +30,23 @@ td {
     width: 400px;
     height: 70px;
 }
+
+root-class-bubble {
+    display: block;
+    width: 314px;
+}
+
+leaf-class-bubble {
+    display: block;
+    width: 314px;
+}
+
+branch-class-bubble {
+    display: block;
+    width: 314px;
+}
+
+stand-alone-class-bubble {
+    display: block;
+    width: 314px;
+}
