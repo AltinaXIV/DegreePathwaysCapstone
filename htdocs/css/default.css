@@ -50,3 +50,7 @@ stand-alone-class-bubble {
     display: block;
     width: 314px;
 }
+
+root-class-bubble.compact, leaf-class-bubble.compact, branch-class-bubble.compact, stand-alone-class-bubble.compact {
+    width: 50px;
+}
