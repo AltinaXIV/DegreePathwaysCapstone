@@ -6,7 +6,8 @@
         <title>University of Pittsburgh Degree Pathway Tool</title>
         <link rel="stylesheet" href="/css/default.css">
         <script src="/js/ripple.js"></script>
-        <script type="text/javascript" src='/js/columns.js'> </script>
+        <script type="text/javascript" src="/js/columns.js"></script>
+        <script type="text/javascript" src="/js/pathways.js"></script>
     </head>
     <body>
         <?php include './template/bubbleElements.html' ?>
@@ -16,12 +17,14 @@
         <div class="row">
             <div class="left-nav-container" id="left-nav">
                 <br>
-                Semesters: <input type="text" id="semesters"><br>
+                <label for="semesters">Semesters: </label>
+                <input type="text" id="semesters"><br>
                 <button onclick="demo()">CS Minor Demo</button><br><br>
+
+                <label for="compact-toggle">Enable compact view: </label>
+                <input type="checkbox" id="compact-toggle" onclick="switchCompact(this);">
             </div>
         </div>
-
-        <!-- <div class="row" id="main-body"></div> -->
 
         <div id="main-body"></div>
 
