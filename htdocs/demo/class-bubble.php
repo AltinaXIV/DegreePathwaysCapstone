@@ -39,6 +39,7 @@
     <head>
         <meta charset="UTF-8">
         <title>DEMO - Class Bubbles</title>
+        <link rel="stylesheet" type="text/css" href="/css/default.css">
     </head>
     <body>
         <?php include '../template/bubbleElements.html' ?>
