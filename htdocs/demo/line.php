@@ -72,14 +72,14 @@
         </script>
         <div class="row">
             <div class="col">
-                <root-class-bubble href="http://www.example.com" id="e1">
+                <root-class-bubble href="http://www.example.com" id="e1" compact>
                     <div slot="course-number">CS 1980</div>
                     <div slot="course-name">TEAM PROJECT DESIGN & IMPLMNTN</div>
                 </root-class-bubble>
             </div>
             <div class="col">
-                <leaf-class-bubble href="http://www.example.com" id="e2">
-                    <div slot="course-number">CS 1980</div>
+                <leaf-class-bubble href="http://www.example.com" id="e2" compact>
+                    <div slot="course-number">WWWW 5555</div>
                     <div slot="course-name">TEAM PROJECT DESIGN & IMPLMNTN</div>
                 </leaf-class-bubble>
             </div>

@@ -51,6 +51,7 @@ stand-alone-class-bubble {
     width: 314px;
 }
 
-root-class-bubble.compact, leaf-class-bubble.compact, branch-class-bubble.compact, stand-alone-class-bubble.compact {
-    width: 50px;
+root-class-bubble[compact], leaf-class-bubble[compact], branch-class-bubble[compact], stand-alone-class-bubble[compact] {
+    width: 114px;
+    text-align: center;
 }

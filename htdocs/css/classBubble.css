@@ -23,7 +23,7 @@
 }
 
 .class-bubble.compact {
-    width: max-content;
+    width: 100px;
 }
 
 .class-bubble.compact [name="course-name"] {
