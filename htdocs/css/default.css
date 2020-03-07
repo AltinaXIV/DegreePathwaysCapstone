@@ -1,9 +1,13 @@
 @import "app-bar.css";
 @import "left-nav.css";
 @import "md-animations/ripple.css";
+@import "fonts.css";
 
 html, body {
     margin: 0;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .table.pathway-body {
