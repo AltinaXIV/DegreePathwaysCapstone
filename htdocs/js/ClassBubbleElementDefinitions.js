@@ -1,69 +1,43 @@
 /**
- * Attach tooltip to ClassBubble element
- *
- * @param {ShadowRoot} shadow
+ * Sets a class bubble to a more compact form-factor
+ * @param shadow {ShadowRoot} The Shadow DOM of the class bubble.
  */
-/*function relocateTooltip(shadow) {
+function makeCompact(shadow) {
     "use strict";
-
-    let BreakException = {};
 
     const childNodes = Array.from(shadow.childNodes);
-     try {
-         childNodes.forEach(childNode => {
-             // Grab the class name of the current node
-             let className = childNode.className;
-             if(className === undefined) {
-                 // This makes the classname an empty string to prevent JS errors.
-                 className = "";
-             }
-             if (className.split(" ")[1] === "class-bubble") {
-                 const bubble = childNode; // The current class bubble that is bring worked on
-                 const subChildren = Array.from(childNode.childNodes);
-                 try {
-                     subChildren.forEach(subChild => {
-                        if (subChild.className === "bubble-tooltip-span") {
-                            const windowWidth = window.innerWidth;
-                            const windowHeight = window.innerHeight;
-                            const bubbleLeft = bubble.getBoundingClientRect().left;
-                            const bubbleRight = bubble.getBoundingClientRect().right;
-                            const bubbleTop = bubble.getBoundingClientRect().top;
-                            const bubbleBottom = bubble.getBoundingClientRect().bottom;
-                            const bubbleWidth = bubbleRight - bubbleLeft;
+    for(let i = 0; i < childNodes.length; i++) {
+        let child = childNodes[i];
+        if(child.className === undefined) {
+            continue;
+        }
 
-                            //The default location for a tooltip will be directly beneath the class bubble
-
-                            subChild.style.top = (bubbleBottom + 5) + "px";
-
-                            throw BreakException;
-                        }
-                     });
-                 } catch (e) {
-                     if (e !== BreakException) {
-                         throw e;
-                     }
-                 }
-                 throw BreakException;
-             }
-         });
-     } catch (e) {
-         if (e !== BreakException) {
-             throw e;
-         }
-     }
-
-}*/
-
+        if(child.classList.contains("class-bubble")) {
+            child.classList.add("compact");
+            return
+        }
+    }
+}
 
 /**
- * Attach interactive features to elements within the shadow DOM
- *
- * @param {ShadowRoot} shadow DOM to attach features too
+ * Sets a class bubble to the original form factor.
+ * @param shadow {ShadowRoot} The Shadow DOM of the class bubble.
  */
-function attachFeatures(shadow) {
+function removeCompact(shadow) {
     "use strict";
 
-    //shadow.addEventListener("mouseover", () => relocateTooltip(shadow));
+    const childNodes = Array.from(shadow.childNodes);
+    for(let i = 0; i < childNodes.length; i++) {
+        let child = childNodes[i];
+        if(child.className === undefined) {
+            continue;
+        }
+
+        if(child.classList.contains("class-bubble")) {
+            child.classList.remove("compact");
+            return
+        }
+    }
 }
 
 class RootClassBubble extends HTMLElement {
@@ -74,15 +48,24 @@ class RootClassBubble extends HTMLElement {
         // Create shadow root. This will create HTML that is not shown in the source.
         this.shadow = this.attachShadow({mode: 'open'});
         this.shadow.append(document.getElementById('rootClassBubbleTemplate').content.cloneNode(true));
-        attachFeatures(this.shadow);
     }
 
-    static get observedAttributes() { return ["href"];}
+    static get observedAttributes() { return ["href", "compact"];}
 
     attributeChangedCallback(name, oldValue, newValue) {
-        this.addEventListener("click", () => {
-            document.location.href = newValue;
-        });
+        if(name === "href") {
+            this.addEventListener("click", () => {
+                document.location.href = newValue;
+            });
+        }
+
+        if(name === "compact") {
+            if(newValue !== null) {
+                makeCompact(this.shadow)
+            } else {
+                removeCompact(this.shadow);
+            }
+        }
     }
 }
 
@@ -96,15 +79,24 @@ class BranchClassBubble extends HTMLElement {
         // Create shadow root. This will create HTML that is not shown in the source.
         this.shadow = this.attachShadow({mode: 'open'});
         this.shadow.append(document.getElementById('branchClassBubbleTemplate').content.cloneNode(true));
-        attachFeatures(this.shadow);
     }
 
-    static get observedAttributes() { return ["href"];}
+    static get observedAttributes() { return ["href", "compact"];}
 
     attributeChangedCallback(name, oldValue, newValue) {
-        this.addEventListener("click", () => {
-            document.location.href = newValue;
-        });
+        if(name === "href") {
+            this.addEventListener("click", () => {
+                document.location.href = newValue;
+            });
+        }
+
+        if(name === "compact") {
+            if(newValue !== null) {
+                makeCompact(this.shadow)
+            } else {
+                removeCompact(this.shadow);
+            }
+        }
     }
 }
 
@@ -117,15 +109,24 @@ class LeafClassBubble extends HTMLElement {
         // Create shadow root. This will create HTML that is not shown in the source.
         this.shadow = this.attachShadow({mode: 'open'});
         this.shadow.append(document.getElementById('leafClassBubbleTemplate').content.cloneNode(true));
-        attachFeatures(this.shadow);
     }
 
-    static get observedAttributes() { return ["href"];}
+    static get observedAttributes() { return ["href", "compact"];}
 
     attributeChangedCallback(name, oldValue, newValue) {
-        this.addEventListener("click", () => {
-            document.location.href = newValue;
-        });
+        if(name === "href") {
+            this.addEventListener("click", () => {
+                document.location.href = newValue;
+            });
+        }
+
+        if(name === "compact") {
+            if(newValue !== null) {
+                makeCompact(this.shadow)
+            } else {
+                removeCompact(this.shadow);
+            }
+        }
     }
 }
 
@@ -138,15 +139,24 @@ class StandAloneClassBubble extends HTMLElement {
         // Create shadow root. This will create HTML that is not shown in the source.
         this.shadow = this.attachShadow({mode: 'open'});
         this.shadow.append(document.getElementById('stand-aloneClassBubbleTemplate').content.cloneNode(true));
-        attachFeatures(this.shadow);
     }
 
-    static get observedAttributes() { return ["href"];}
+    static get observedAttributes() { return ["href", "compact"];}
 
     attributeChangedCallback(name, oldValue, newValue) {
-        this.addEventListener("click", () => {
-            document.location.href = newValue;
-        });
+        if(name === "href") {
+            this.addEventListener("click", () => {
+                document.location.href = newValue;
+            });
+        }
+
+        if(name === "compact") {
+            if(newValue !== null) {
+                makeCompact(this.shadow)
+            } else {
+                removeCompact(this.shadow);
+            }
+        }
     }
 }
 

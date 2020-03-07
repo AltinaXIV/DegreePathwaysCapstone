@@ -1,5 +1,5 @@
 .root-class-bubble {
-    border-radius: 15px 50px 50px 15px;
+    border-radius: 8px 50px 50px 8px;
 }
 
 .branch-class-bubble {
@@ -7,11 +7,11 @@
 }
 
 .leaf-class-bubble {
-    border-radius: 50px 15px 15px 50px;
+    border-radius: 50px 8px 8px 50px;
 }
 
 .stand-alone-class-bubble {
-    border-radius: 15px 15px 15px 15px;
+    border-radius: 8px 8px 8px 8px;
 }
 
 .class-bubble {
@@ -20,6 +20,14 @@
     padding: 5px;
     cursor: pointer;
     width: 300px;
+}
+
+.class-bubble.compact {
+    width: 100px;
+}
+
+.class-bubble.compact [name="course-name"] {
+    display: none;
 }
 
 .class-bubble:hover .bubble-tooltip-span {
