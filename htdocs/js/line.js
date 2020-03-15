@@ -15,13 +15,14 @@ function createLine() {
  *
  * @param x1 {number}
  * @param y1 {number}
+ * @param dif {number}
  */
-function createRightUpCurve(x1, y1) {
+function createRightUpCurve(x1, y1, dif) {
     let sp = " ";
     let curve = document.createElementNS("http://www.w3.org/2000/svg", "path");
     let d = "M " + x1.toString() + sp + y1.toString() +
         " Q " + (x1 + 5).toString() + sp + (y1).toString() + sp +
-        (x1 + 5).toString() + sp + (y1 - 20).toString();
+        (x1 + 5).toString() + sp + (y1 - Math.min(dif / 2, 20)).toString();
     curve.setAttribute("d", d);
     return curve;
 }
@@ -31,13 +32,14 @@ function createRightUpCurve(x1, y1) {
  *
  * @param x1 {number}
  * @param y1 {number}
+ * @param dif {number}
  */
-function createRightDownCurve(x1, y1) {
+function createRightDownCurve(x1, y1, dif) {
     let sp = " ";
     let curve = document.createElementNS("http://www.w3.org/2000/svg", "path");
     let d = "M " + x1.toString() + sp + y1.toString() +
         " Q " + (x1 + 5).toString() + sp + (y1).toString() + sp +
-        (x1 + 5).toString() + sp + (y1 + 20).toString();
+        (x1 + 5).toString() + sp + (y1 + Math.min(dif / 2, 20)).toString();
     curve.setAttribute("d", d);
     return curve;
 }
@@ -63,13 +65,14 @@ function createUpRightCurve(x1, y1) {
  *
  * @param x1 {number}
  * @param y1 {number}
+ * @param finalY {number} the final position of y.
  */
-function createDownRightCurve(x1, y1) {
+function createDownRightCurve(x1, y1, finalY) {
     let sp = " ";
     let curve = document.createElementNS("http://www.w3.org/2000/svg", "path");
     let d = "M " + x1.toString() + sp + y1.toString() +
         " Q " + (x1).toString() + sp + (y1 + 5).toString() + sp +
-        (x1 + 20).toString() + sp + (y1 + 5).toString();
+        (x1 + 20).toString() + sp + (y1 + finalY).toString();
     curve.setAttribute("d", d);
     return curve;
 }
@@ -144,6 +147,7 @@ function attachElements(firstElement, secondElement) {
         let currentPositionX = 0;
         svg.style.left = e1.getBoundingClientRect().right + "px";
         svg.style.top = Math.min(e1y, e2y) - 1 + "px";
+        let heightDif = Math.abs(e1y - e2y);
         if (e1y === e2y) {
             let line = createLine();
             line = setLine(line, 0, 1, width, 1);
@@ -155,17 +159,19 @@ function attachElements(firstElement, secondElement) {
             line = setLine(line, currentPositionX, currentPositionY, currentPositionX + 20, currentPositionY);
             svg.appendChild(line);
             currentPositionX += 20;
-            let curve = createRightDownCurve(currentPositionX, currentPositionY);
+            let curve = createRightDownCurve(currentPositionX, currentPositionY, heightDif);
             svg.appendChild(curve);
             currentPositionX += 5;
-            currentPositionY += 20;
-            line = createLine();
-            line = setLine(line, currentPositionX, currentPositionY, currentPositionX, height - 6);
-            currentPositionY = height - 6;
-            svg.appendChild(line);
-            curve = createDownRightCurve(currentPositionX, currentPositionY);
+            currentPositionY += Math.min(heightDif / 2, 20);
+            if(height - currentPositionY > 6) {
+                line = createLine();
+                line = setLine(line, currentPositionX, currentPositionY, currentPositionX, height - 6);
+                currentPositionY = height - 6;
+                svg.appendChild(line);
+            }
+            curve = createDownRightCurve(currentPositionX, currentPositionY, Math.min(5, height - currentPositionY));
             currentPositionX += 20;
-            currentPositionY += 5;
+            currentPositionY += Math.min(5, height - currentPositionY);
             svg.appendChild(curve);
             line = createLine();
             line = setLine(line, currentPositionX, currentPositionY, width, currentPositionY);
@@ -178,14 +184,17 @@ function attachElements(firstElement, secondElement) {
             line = setLine(line, currentPositionX, currentPositionY, currentPositionX + 20, currentPositionY);
             svg.appendChild(line);
             currentPositionX += 20;
-            let curve = createRightUpCurve(currentPositionX, currentPositionY);
+            let curve = createRightUpCurve(currentPositionX, currentPositionY, heightDif);
             svg.appendChild(curve);
             currentPositionX += 5;
-            currentPositionY -= 20;
-            line = createLine();
-            line = setLine(line, currentPositionX, currentPositionY, currentPositionX, 6);
-            currentPositionY = 6;
-            svg.appendChild(line);
+            currentPositionY -= Math.min(heightDif / 2, 20);
+            currentPositionY = Math.max(currentPositionY, 6);
+            if(currentPositionY > 6) {
+                line = createLine();
+                line = setLine(line, currentPositionX, currentPositionY, currentPositionX, 6);
+                currentPositionY = 6;
+                svg.appendChild(line);
+            }
             curve = createUpRightCurve(currentPositionX, currentPositionY);
             currentPositionX += 20;
             currentPositionY -= 5;

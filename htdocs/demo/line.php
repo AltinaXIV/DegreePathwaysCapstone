@@ -58,13 +58,15 @@
                     bottomBound -= Math.max(e1Height, e2Height);
                 }
 
-                let y = Math.floor(Math.random() * bottomBound);
+                //let y = Math.floor(Math.random() * bottomBound);
 
-                e1.style.top = y + "px";
+                //e1.style.top = y + "px";
+                e1.style.top = 75 + "px";
 
-                y = Math.floor(Math.random() * bottomBound);
+                //y = Math.floor(Math.random() * bottomBound);
 
-                e2.style.top = y + "px";
+                //e2.style.top = y + "px";
+                e2.style.top = 60 + "px";
                 attachElements(e1, e2);
 
             }
