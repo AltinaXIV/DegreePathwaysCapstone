@@ -8,6 +8,7 @@
             }
             #e1, #e2 {
                 position: relative;
+                display: block;
             }
             .col {
                 float: left;
@@ -37,7 +38,7 @@
         <title>Line Demo</title>
         <meta charset="UTF-8">
     </head>
-    <body>
+    <body onload="attachElements(document.getElementById('e1'), document.getElementById('e2'))">
         <?php include '../template/bubbleElements.html' ?>
         <script src="/js/line.js"></script>
         <script>
@@ -49,8 +50,6 @@
                 let e2 = document.getElementById("e2");
                 if (!started) {
                     started = true;
-                    e1.style.display = "block";
-                    e2.style.display = "block";
                     document.getElementById("moveButton").innerHTML = "Move Elements";
 
                     let e1Height = e1.clientHeight;
@@ -59,13 +58,15 @@
                     bottomBound -= Math.max(e1Height, e2Height);
                 }
 
-                let y = Math.floor(Math.random() * bottomBound);
+                //let y = Math.floor(Math.random() * bottomBound);
 
-                e1.style.top = y + "px";
+                //e1.style.top = y + "px";
+                e1.style.top = 75 + "px";
 
-                y = Math.floor(Math.random() * bottomBound);
+                //y = Math.floor(Math.random() * bottomBound);
 
-                e2.style.top = y + "px";
+                //e2.style.top = y + "px";
+                e2.style.top = 60 + "px";
                 attachElements(e1, e2);
 
             }
@@ -85,8 +86,5 @@
             </div>
         </div>
         <button id="moveButton" onclick="moveElements()">Start Demo</button>
-        <script>
-            attachElements(document.getElementById("e1"), document.getElementById("e2"));
-        </script>
     </body>
 </html>
