@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>University of Pittsburgh Degree Pathway Tool</title>
         <link rel="stylesheet" href="/css/default.css">
-        <script src="/js/ripple.js"></script>
+        <script src="/js/material-elements.js"></script>
         <script type="text/javascript" src="/js/columns.js"></script>
         <script type="text/javascript" src="/js/pathways.js"></script>
     </head>
