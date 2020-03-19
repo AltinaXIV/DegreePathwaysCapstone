@@ -21,10 +21,12 @@
                     <input type="text" id="semesters"><br>
                     <label class="text-label" for="semesters">Semesters</label>
                 </div>
-                <button onclick="demo()">CS Minor Demo</button><br><br>
+                <button onclick="demo()" ripple="ripple" class="generic-button">CS Minor Demo</button><br><br>
 
-                <label for="compact-toggle">Enable compact view: </label>
-                <input type="checkbox" id="compact-toggle" onclick="switchCompact(this);">
+                <label for="compact-toggle">Enable compact view: </label><br>
+                <div class="material-switch">
+                    <input type="checkbox" id="compact-toggle" onclick="switchCompact(this);">
+                </div>
             </div>
         </div>
 

@@ -51,6 +51,21 @@ input:focus {
     animation: ripple-underline-highlight 300ms forwards;
 }
 
+.generic-button {
+    background-color: transparent;
+    border: 1px solid #ffb81c !important;
+    border-radius: 3px 3px 3px 3px;
+    font-weight: bold;
+}
+
+.material-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+
 @keyframes move-label-up {
     from {
         top: 10px;
