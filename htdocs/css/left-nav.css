@@ -9,6 +9,7 @@
     overflow: hidden;
     flex-grow: 1;
     height: calc(100vh - 56px);
+    white-space: nowrap;
 }
 
 .left-nav-container.active {
