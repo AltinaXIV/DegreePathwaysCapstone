@@ -28,7 +28,11 @@ input:focus {
 }
 
 .material-text-label-up {
-    animation: move-label-up 300ms forwards;
+    animation: move-label-up 300ms forwards normal;
+}
+
+.material-text-label-down {
+    animation: move-label-down 300ms forwards;
 }
 
 .input-text-highlight-blur {
@@ -48,9 +52,24 @@ input:focus {
 }
 
 @keyframes move-label-up {
+    from {
+        top: 10px;
+        font-size: 18px;
+    }
     to {
         top: -20px;
         font-size: 12px;
+    }
+}
+
+@keyframes move-label-down {
+    from {
+        top: -20px;
+        font-size: 12px;
+    }
+    to {
+        top: 10px;
+        font-size: 18px;
     }
 }
 

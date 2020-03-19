@@ -54,6 +54,7 @@ function initializeTextInput() {
         textFields[i].appendChild(highlight);
         textField.addEventListener("focus", () => {
             label.classList.add("material-text-label-up");
+            label.classList.remove("material-text-label-down");
             let newHighlight = document.createElement("div");
             newHighlight.classList.add("input-text-highlight-focus");
             textFields[i].appendChild(newHighlight);
@@ -65,6 +66,7 @@ function initializeTextInput() {
         textField.addEventListener("blur", () => {
             if(textField.value === "") {
                 label.classList.remove("material-text-label-up");
+                label.classList.add("material-text-label-down");
             }
             highlight.classList.remove("input-text-highlight-focus");
             highlight.classList.add("input-text-highlight-blur");
