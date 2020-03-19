@@ -13,15 +13,11 @@
 }
 
 .left-nav-container.active {
-    animation-name: show-left-nav;
-    animation-duration: 400ms;
-    animation-fill-mode: forwards;
+    animation:  show-left-nav 400ms forwards;
 }
 
 .left-nav-container.inactive {
-    animation-name: hide-left-nav;
-    animation-duration: 400ms;
-    animation-fill-mode: forwards;
+    animation: hide-left-nav 400ms forwards;
 }
 
 @keyframes show-left-nav {
