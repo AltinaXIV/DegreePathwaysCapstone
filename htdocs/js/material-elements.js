@@ -24,6 +24,9 @@ function showRipple(event, ripple, rippleContainer) {
     setTimeout(() => {rippleContainer.firstChild.remove();}, 600);
 }
 
+/**
+ * Run this function once the body loads to initialize the ripple effect
+ */
 function initializeRipple() {
     "use strict";
 
@@ -36,5 +39,24 @@ function initializeRipple() {
             showRipple(e, ripple, rippleContainer);
         });
         ripple.appendChild(rippleContainer);
+    }
+}
+
+function initializeTextInput() {
+    "use strict";
+
+    let textFields = document.querySelectorAll(".material-input-text");
+    for(let i = 0; i < textFields.length; i++) {
+        let textField = textFields[i].childNodes[1];
+        let label = textFields[i].childNodes[4];
+        textField.addEventListener("focus", () => {
+            label.classList.add("material-text-label-up")
+        });
+        textField.addEventListener("blur", () => {
+            if(textField.value === "") {
+                label.classList.remove("material-text-label-up")
+            }
+        });
+        console.log(label)
     }
 }

@@ -1,7 +1,9 @@
 @import "app-bar.css";
 @import "left-nav.css";
-@import "md-animations/ripple.css";
 @import "fonts.css";
+
+@import "md-animations/ripple.css";
+@import "md-animations/input.css";
 
 html, body {
     margin: 0;

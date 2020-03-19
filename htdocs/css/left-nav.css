@@ -1,7 +1,7 @@
 .left-nav-container {
     width: 0;
     float: left;
-    background-color: #141b4d;
+    background-color: rgb(20, 27, 77);
     top: 0;
     z-index: -1;
     padding-left: 0;
