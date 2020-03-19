@@ -31,9 +31,32 @@ input:focus {
     animation: move-label-up 300ms forwards;
 }
 
+.input-text-highlight-blur {
+    height: 2px;
+    background-color: #999999;
+    position: absolute;
+    top: 39px;
+}
+
+.input-text-highlight-focus {
+    height: 3px;
+    background-color: #ffb81c;
+    position: absolute;
+    top: 38px;
+    transform: scale(0);
+    animation: ripple-underline-highlight 300ms forwards;
+}
+
 @keyframes move-label-up {
     to {
         top: -20px;
         font-size: 12px;
     }
+}
+
+@keyframes ripple-underline-highlight {
+    to {
+        transform: scale(1);
+    }
+
 }
