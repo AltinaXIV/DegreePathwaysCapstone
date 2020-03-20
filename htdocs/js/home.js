@@ -1,4 +1,5 @@
 initializeRipple();
+initializeTextInput();
 
 function activateLeftNav() {
     let topNav = document.getElementById("left-nav");

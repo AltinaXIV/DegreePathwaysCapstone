@@ -1,0 +1,132 @@
+.material-input-text {
+    position: relative;
+}
+
+input[type="text"] {
+    border: none;
+    border-radius: 3px 3px 0 0;
+    font-size: 18px;
+    background-color: rgb(25, 36, 101);
+    caret-color: #ffb81c;
+    display: block;
+    padding: 10px 10px 10px 5px;
+}
+
+input:focus {
+    outline: none;
+}
+
+.text-label {
+    color: #999999;
+    font-size: 18px;
+    position: absolute;
+    left: 5px;
+    top: 10px;
+    user-select: none;
+    user-focus: none;
+    cursor: text;
+}
+
+.material-text-label-up {
+    animation: move-label-up 300ms forwards normal;
+}
+
+.material-text-label-down {
+    animation: move-label-down 300ms forwards;
+}
+
+.input-text-highlight-blur {
+    height: 2px;
+    background-color: #999999;
+    position: absolute;
+    top: 39px;
+}
+
+.input-text-highlight-focus {
+    height: 3px;
+    background-color: #ffb81c;
+    position: absolute;
+    top: 38px;
+    transform: scale(0);
+    animation: ripple-underline-highlight 300ms forwards;
+}
+
+.generic-button {
+    background-color: transparent;
+    border: 1px solid #ffb81c !important;
+    border-radius: 3px 3px 3px 3px;
+    font-weight: bold;
+}
+
+.material-switch-container {
+    position: relative;
+    display: block;
+    width: 60px;
+    height: 34px;
+    margin-top: 10px;
+}
+
+.material-switch-container input {
+    display: none;
+}
+
+.material-toggle {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #999999;
+    transition: .2s;
+    border-radius: 34px;
+}
+
+.material-toggle:before {
+    position: absolute;
+    content: "";
+    height: 34px;
+    width: 34px;
+    background-color: #222222;
+    transition: .2s;
+    border-radius: 50%;
+    left: -1px;
+}
+
+input:checked + .material-toggle {
+    background-color: #ffb81c;
+    box-shadow: 0 0 4px #ffb81c;
+}
+
+input:checked + .material-toggle:before {
+    transform: translateX(28px);
+}
+
+@keyframes move-label-up {
+    from {
+        top: 10px;
+        font-size: 18px;
+    }
+    to {
+        top: -20px;
+        font-size: 12px;
+    }
+}
+
+@keyframes move-label-down {
+    from {
+        top: -20px;
+        font-size: 12px;
+    }
+    to {
+        top: 10px;
+        font-size: 18px;
+    }
+}
+
+@keyframes ripple-underline-highlight {
+    to {
+        transform: scale(1);
+    }
+
+}

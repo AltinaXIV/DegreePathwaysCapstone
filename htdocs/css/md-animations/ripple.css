@@ -1,6 +1,7 @@
 button[ripple] {
     border: none;
     outline: 0;
+    font-size: 18px;
 }
 
 [ripple] {

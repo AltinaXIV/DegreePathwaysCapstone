@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>University of Pittsburgh Degree Pathway Tool</title>
         <link rel="stylesheet" href="/css/default.css">
-        <script src="/js/ripple.js"></script>
+        <script src="/js/material-elements.js"></script>
         <script type="text/javascript" src="/js/columns.js"></script>
         <script type="text/javascript" src="/js/pathways.js"></script>
     </head>
@@ -17,12 +17,16 @@
         <div class="row">
             <div class="left-nav-container" id="left-nav">
                 <br>
-                <label for="semesters">Semesters: </label>
-                <input type="text" id="semesters"><br>
-                <button onclick="demo()">CS Minor Demo</button><br><br>
-
-                <label for="compact-toggle">Enable compact view: </label>
-                <input type="checkbox" id="compact-toggle" onclick="switchCompact(this);">
+                <div class="material-input-text">
+                    <input type="text" id="semesters"><br>
+                    <label class="text-label" for="semesters">Semesters</label>
+                </div>
+                <button onclick="demo()" ripple="ripple" class="generic-button">CS Minor Demo</button><br><br>
+                <div>Enable compact view:</div>
+                <label class="material-switch-container">
+                    <input type="checkbox" onclick="switchCompact(this)">
+                    <span class="material-toggle"></span>
+                </label>
             </div>
         </div>
 
