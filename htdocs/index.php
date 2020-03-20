@@ -22,11 +22,11 @@
                     <label class="text-label" for="semesters">Semesters</label>
                 </div>
                 <button onclick="demo()" ripple="ripple" class="generic-button">CS Minor Demo</button><br><br>
-
-                <label for="compact-toggle">Enable compact view: </label><br>
-                <div class="material-switch">
-                    <input type="checkbox" id="compact-toggle" onclick="switchCompact(this);">
-                </div>
+                <div>Enable compact view:</div>
+                <label class="material-switch-container">
+                    <input type="checkbox" onclick="switchCompact(this)">
+                    <span class="material-toggle"></span>
+                </label>
             </div>
         </div>
 

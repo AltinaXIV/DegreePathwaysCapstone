@@ -58,13 +58,49 @@ input:focus {
     font-weight: bold;
 }
 
-.material-switch {
+.material-switch-container {
     position: relative;
-    display: inline-block;
+    display: block;
     width: 60px;
     height: 34px;
+    margin-top: 10px;
 }
 
+.material-switch-container input {
+    display: none;
+}
+
+.material-toggle {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #999999;
+    transition: .2s;
+    border-radius: 34px;
+}
+
+.material-toggle:before {
+    position: absolute;
+    content: "";
+    height: 34px;
+    width: 34px;
+    background-color: #222222;
+    transition: .2s;
+    border-radius: 50%;
+    left: -1px;
+}
+
+input:checked + .material-toggle {
+    background-color: #ffb81c;
+    box-shadow: 0 0 4px #ffb81c;
+}
+
+input:checked + .material-toggle:before {
+    transform: translateX(28px);
+}
 
 @keyframes move-label-up {
     from {
