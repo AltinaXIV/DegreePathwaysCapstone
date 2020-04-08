@@ -2,8 +2,11 @@
 // temporarily places the argument course_no into the course-number slot
 // needs work and real data
 function addRootTo(id, course_no, course_name){
-    var elem = document.getElementById(id, course_no);
-    var bubble = document.createElement("root-class-bubble");
+    let elem = document.getElementById(id);
+    let bubble = document.createElement("root-class-bubble");
+    if(enableCompactView) {
+        bubble.setAttribute("compact" ,"");
+    }
     bubble.id = course_no;
     bubble.innerHTML= '<div slot="course-number">' + course_no + '</div>';
     bubble.innerHTML+= '<div slot="course-name">' + course_name + '</div>';
@@ -12,8 +15,11 @@ function addRootTo(id, course_no, course_name){
 }
 
 function addBranchTo(id, course_no, course_name){
-    var elem = document.getElementById(id, course_no);
-    var bubble = document.createElement("branch-class-bubble");
+    let elem = document.getElementById(id);
+    let bubble = document.createElement("branch-class-bubble");
+    if(enableCompactView) {
+        bubble.setAttribute("compact" ,"");
+    }
     bubble.id = course_no;
     bubble.innerHTML= '<div slot="course-number">' + course_no + '</div>';
     bubble.innerHTML+= '<div slot="course-name">' + course_name + '</div>';
@@ -22,8 +28,11 @@ function addBranchTo(id, course_no, course_name){
 }
 
 function addLeafTo(id, course_no, course_name){
-    var elem = document.getElementById(id, course_no);
-    var bubble = document.createElement("leaf-class-bubble");
+    let elem = document.getElementById(id);
+    let bubble = document.createElement("leaf-class-bubble");
+    if(enableCompactView) {
+        bubble.setAttribute("compact" ,"");
+    }
     bubble.id = course_no;
     bubble.innerHTML= '<div slot="course-number">' + course_no + '</div>';
     bubble.innerHTML+= '<div slot="course-name">' + course_name + '</div>';
@@ -32,8 +41,11 @@ function addLeafTo(id, course_no, course_name){
 }
 
 function addStandAloneTo(id, course_no, course_name){
-    var elem = document.getElementById(id, course_no);
-    var bubble = document.createElement("stand-alone-class-bubble");
+    let elem = document.getElementById(id);
+    let bubble = document.createElement("stand-alone-class-bubble");
+    if(enableCompactView) {
+        bubble.setAttribute("compact" ,"");
+    }
     bubble.id = course_no;
     bubble.innerHTML= '<div slot="course-number">' + course_no + '</div>';
     bubble.innerHTML+= '<div slot="course-name">' + course_name + '</div>';
@@ -53,18 +65,18 @@ function place(){
 }
 
 function drawTable() {
-    var rows = 10; //specify as 10 for now
-    var columns = parseInt(document.getElementById("semesters").value);
+    let rows = 10; //specify as 10 for now
+    let columns = parseInt(document.getElementById("semesters").value);
     
-    var body = document.getElementById('main-body');
+    let body = document.getElementById('main-body');
     body.innerHTML='';
-    var table = document.createElement("table");
+    let table = document.createElement("table");
     table.id = "pathway";
 
-    for (var r = 0; r <= rows; r++) {
-        var row = document.createElement("tr");
-        for (var c = 1; c <= columns; c++) {
-            var cell = document.createElement("td");
+    for (let r = 0; r <= rows; r++) {
+        let row = document.createElement("tr");
+        for (let c = 1; c <= columns; c++) {
+            let cell = document.createElement("td");
             if (r == 0){
                 cell.innerHTML ="Semester " + c;
                 cell.id = "semester-" + c + "-label";
@@ -93,15 +105,15 @@ function demo(){
  * gives each column id="column-i"
  */
 function generateColumns(){
-    var row = document.getElementById("main-body");
+    let row = document.getElementById("main-body");
     row.innerHTML='';
     row.className="row pathway-body";
-    var semesters = parseInt(document.getElementById("semesters").value);
+    let semesters = parseInt(document.getElementById("semesters").value);
     for (i = 1; i <= semesters; i++) {
-        var col = document.createElement("div");
+        let col = document.createElement("div");
         col.className = "column pathway-body";
 
-        var semester_label = document.createElement("P");
+        let semester_label = document.createElement("P");
         semester_label.innerHTML = "Semester " + i;
         col.appendChild(semester_label);
         col.id = "column-" + i;
@@ -118,16 +130,16 @@ function generateColumns(){
  * gives each column id="column-i"
  */
 function generateColumns2(){
-    var row = document.getElementById("main-body");
+    let row = document.getElementById("main-body");
     row.innerHTML='';
     row.className="row pathway-body";
-    var semesters = parseInt(document.getElementById("semesters").value);
+    let semesters = parseInt(document.getElementById("semesters").value);
     for (c = 1; c <= semesters; c++) {
-        var col = document.createElement("div");
+        let col = document.createElement("div");
         col.className = "column pathway-body";
 
         for (r = 0; r <= 8; r++) {
-            var cell = document.createElement("cell");
+            let cell = document.createElement("cell");
             if (r == 0){
                 cell.innerHTML ="Semester " + c;
                 cell.id = "semester-" + c + "-label";
