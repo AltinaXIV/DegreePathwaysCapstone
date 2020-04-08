@@ -77,7 +77,7 @@ function drawTable() {
         let row = document.createElement("tr");
         for (let c = 1; c <= columns; c++) {
             let cell = document.createElement("td");
-            if (r == 0){
+            if (r === 0){
                 cell.innerHTML ="Semester " + c;
                 cell.id = "semester-" + c + "-label";
             }
@@ -109,7 +109,7 @@ function generateColumns(){
     row.innerHTML='';
     row.className="row pathway-body";
     let semesters = parseInt(document.getElementById("semesters").value);
-    for (i = 1; i <= semesters; i++) {
+    for (let i = 1; i <= semesters; i++) {
         let col = document.createElement("div");
         col.className = "column pathway-body";
 
@@ -134,13 +134,13 @@ function generateColumns2(){
     row.innerHTML='';
     row.className="row pathway-body";
     let semesters = parseInt(document.getElementById("semesters").value);
-    for (c = 1; c <= semesters; c++) {
+    for (let c = 1; c <= semesters; c++) {
         let col = document.createElement("div");
         col.className = "column pathway-body";
 
-        for (r = 0; r <= 8; r++) {
+        for (let r = 0; r <= 8; r++) {
             let cell = document.createElement("cell");
-            if (r == 0){
+            if (r === 0){
                 cell.innerHTML ="Semester " + c;
                 cell.id = "semester-" + c + "-label";
             }
