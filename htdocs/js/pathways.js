@@ -2,7 +2,10 @@ let enableCompactView = false;
 
 let Info = class {
     constructor() {
-        this.classes = undefined;
+        this.classes = {};
+        this.prereqs = {};
+        this.coreqs = {};
+        this.minSemesters = 0;
     };
 };
 
@@ -82,10 +85,7 @@ function addStandAloneTo(id, course_no, course_name){
     elem.appendChild(document.createElement("br"));
 }
 
-async function getClasses() {
-    const r = await fetch("/cdn/query.php?action=major");
-    return await r.json();
-}
+
 
 /**
  * Get information needed to map out course
@@ -94,13 +94,22 @@ async function getClasses() {
  */
 async function getInfo() {
     let info = new Info();
-    info.classes = await getClasses();
-    console.log(info);
-    return null;
+    let r = await fetch("/cdn/query.php?a=major");
+    info.classes = await r.json();
+    r = await fetch("/cdn/query.php?a=prereq");
+    info.prereqs = await r.json();
+    r = await fetch("/cdn/query.php?a=coreq");
+    info.coreqs = await r.json();
+
+    info.classes = info.classes['classes'];
+    info.prereqs = info.prereqs['prereqs'];
+    info.coreqs = info.coreqs['coreqs'];
+    return info;
 }
 
-function demo() {
-    let info = getInfo();
+async function demo() {
+    let info = await getInfo();
+    console.log(info);
     drawTable();
-    place();
+    //place();
 }
