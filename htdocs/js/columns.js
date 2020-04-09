@@ -1,6 +1,8 @@
-// add a bubble to a given element (column) by id
-// temporarily places the argument course_no into the course-number slot
-// needs work and real data
+/**
+ * add a bubble to a given element (column) by id
+ * temporarily places the argument course_no into the course-number slot
+ * needs work and real data
+ */
 function addRootTo(id, course_no, course_name){
     var elem = document.getElementById(id, course_no);
     var bubble = document.createElement("root-class-bubble");
@@ -81,67 +83,43 @@ function drawTable() {
     
 }
 
+/**
+ * Connects course bubbles given a list of pairs of courses that have a prerequisite relation.
+ * (using static data)
+ */
+function connect(){
+
+    var preReqs = [["MATH", "CS441"],
+    ["CS401", "CS445"],
+    ["CS445", "CS449"],
+    ["CS441", "CS1501"],
+    ["CS445", "CS1501"]
+    ];
+
+    clearLines();
+    var i;
+    for (i = 0; i < preReqs.length; i++) {
+        var firstElement = document.getElementById(preReqs[i][0]);
+        var secondElement = document.getElementById(preReqs[i][1]);
+        attachElements(firstElement, secondElement);  
+    }
+}
+
+/**
+ * Clears all existing lines between courses by removing all svg elements.
+ */
+function clearLines(){
+    var lines = document.querySelectorAll('svg');
+
+    var i;
+    for (i = 0; i < lines.length; i++) {
+       lines[i].remove();
+    }
+}
+
 function demo(){
     drawTable();
     place();
-}
-//--------------------------------------------------------------------------
-/**
- * drawTable is working better for placing bubbles
- * creates the number of columns specified in input field id="semesters"
- * columns are appended to EXISTING row id="main-body" on the page
- * gives each column id="column-i"
- */
-function generateColumns(){
-    var row = document.getElementById("main-body");
-    row.innerHTML='';
-    row.className="row pathway-body";
-    var semesters = parseInt(document.getElementById("semesters").value);
-    for (i = 1; i <= semesters; i++) {
-        var col = document.createElement("div");
-        col.className = "column pathway-body";
-
-        var semester_label = document.createElement("P");
-        semester_label.innerHTML = "Semester " + i;
-        col.appendChild(semester_label);
-        col.id = "column-" + i;
-        row.appendChild(col);
-    }
-    // place();
+    connect();
 }
 
-/**
- * Modifications to column generation by adding cells to columns. 
- * Table is working better, ignore for now
- * creates the number of columns specified in input field id="semesters"
- * columns are appended to EXISTING row id="main-body" on the page
- * gives each column id="column-i"
- */
-function generateColumns2(){
-    var row = document.getElementById("main-body");
-    row.innerHTML='';
-    row.className="row pathway-body";
-    var semesters = parseInt(document.getElementById("semesters").value);
-    for (c = 1; c <= semesters; c++) {
-        var col = document.createElement("div");
-        col.className = "column pathway-body";
-
-        for (r = 0; r <= 8; r++) {
-            var cell = document.createElement("cell");
-            if (r == 0){
-                cell.innerHTML ="Semester " + c;
-                cell.id = "semester-" + c + "-label";
-            }
-            else {
-                cell.id= "r" + r + "-c" + c;
-                // cell.innerHTML = "r" + r + "-c" + c;
-            }
-            col.appendChild(cell);
-            col.appendChild(document.createElement("BR"));
-         }
-
-        col.id = "column-" + c;
-        row.appendChild(col);
-    }
-    place();
-}

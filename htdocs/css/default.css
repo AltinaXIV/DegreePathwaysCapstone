@@ -6,6 +6,7 @@
 @import "md-animations/input.css";
 
 html, body {
+    padding: 0;
     margin: 0;
     font-family: "Roboto", sans-serif;
     font-weight: 400;
@@ -61,3 +62,20 @@ root-class-bubble[compact], leaf-class-bubble[compact], branch-class-bubble[comp
     width: 114px;
     text-align: center;
 }
+
+line {
+    stroke: #0e84b5;
+    stroke-width: 1;
+}
+path {
+    stroke: #0e84b5;
+    stroke-width: 1;
+    fill: transparent;
+}
+svg {
+    position: absolute;
+    z-index: -1;
+    margin: 0;
+    padding: 0;
+}
+

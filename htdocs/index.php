@@ -8,6 +8,8 @@
         <script src="/js/material-elements.js"></script>
         <script type="text/javascript" src="/js/columns.js"></script>
         <script type="text/javascript" src="/js/pathways.js"></script>
+        <script type="text/javascript" src="/js/line.js"></script>
+   
     </head>
     <body>
         <?php include './template/bubbleElements.html' ?>
@@ -22,9 +24,11 @@
                     <label class="text-label" for="semesters">Semesters</label>
                 </div>
                 <button onclick="demo()" ripple="ripple" class="generic-button">CS Minor Demo</button><br><br>
+                <button onclick="connect()" ripple="ripple" class="generic-button">test connect</button><br><br>
+                <button onclick="clearLines()" ripple="ripple" class="generic-button">test clear lines</button><br><br>
                 <div>Enable compact view:</div>
                 <label class="material-switch-container">
-                    <input type="checkbox" onclick="switchCompact(this)">
+                    <input type="checkbox" onclick="switchCompact(this); connect()">
                     <span class="material-toggle"></span>
                 </label>
             </div>
