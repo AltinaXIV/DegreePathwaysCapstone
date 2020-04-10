@@ -71,6 +71,5 @@ function initializeTextInput() {
             highlight.classList.remove("input-text-highlight-focus");
             highlight.classList.add("input-text-highlight-blur");
         });
-        console.log(label)
     }
 }

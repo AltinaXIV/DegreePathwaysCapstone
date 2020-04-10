@@ -12,24 +12,9 @@ html, body {
     font-style: normal;
 }
 
-.table.pathway-body {
-    display: flex;
+button {
+    color: #dddddd;
 }
-
-.row.pathway-body {
-    display: flex;
-}
-
-.column.pathway-body {
-    flex: 50%;
-    padding: 10px;
-
-}
-
-.table.pathway {
-    display: table;
-    width: 100%;
-  }
 
 td {
     /* using fixed width for demo */
@@ -60,4 +45,34 @@ stand-alone-class-bubble {
 root-class-bubble[compact], leaf-class-bubble[compact], branch-class-bubble[compact], stand-alone-class-bubble[compact] {
     width: 114px;
     text-align: center;
+}
+
+#main-body {
+    position: absolute;
+}
+
+#main-body.active {
+    animation: collapse-main-body 400ms forwards;
+}
+
+#main-body.inactive {
+    animation: expand-main-body 400ms forwards;
+}
+
+@keyframes collapse-main-body {
+    from {
+        left: 0;
+    }
+    to {
+        left: 272px;
+    }
+}
+
+@keyframes expand-main-body {
+    from {
+        left: 272px;
+    }
+    to {
+        left: 0;
+    }
 }
