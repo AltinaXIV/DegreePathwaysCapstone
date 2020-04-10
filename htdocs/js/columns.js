@@ -9,37 +9,6 @@ function place() {
     addLeafTo("r4-c2", "CS447", "course name");
 }
 
-function drawTable(rows, minCols) {
-    let columns = parseInt(document.getElementById("semesters").value);
-    if (columns < minCols) {
-        alert("The minimum amount of semesters for this major is " + minCols + ".");
-        return;
-    }
-
-    let body = document.getElementById('main-body');
-    body.innerHTML = '';
-    let table = document.createElement("table");
-    table.id = "pathway";
-
-    for (let r = 0; r <= rows; r++) {
-        let row = document.createElement("tr");
-        for (let c = 1; c <= columns; c++) {
-            let cell = document.createElement("td");
-            if (r === 0) {
-                cell.innerHTML = "Semester " + c;
-                cell.id = "semester-" + c + "-label";
-            } else {
-                cell.id = "r" + r + "-c" + c;
-                // cell.innerHTML = "r" + r + "-c" + c;
-            }
-            row.appendChild(cell);
-        }
-        table.appendChild(row);
-    }
-    body.appendChild(table);
-
-}
-
 //--------------------------------------------------------------------------
 /**
  * drawTable is working better for placing bubbles

@@ -1,9 +1,17 @@
 let enableCompactView = false;
 
+const ClassType = {
+    ROOT: 0,
+    BRANCH: 1,
+    LEAF: 2,
+    STAND_ALONE: 3
+};
+
 let Info = class {
     constructor() {
         this.classes = {};
         this.prereqs = new Map();
+        this.isPrereq = []; // Defines if a class is a prereq of another.
         this.coreqs = new Map();
         this.minSemesters = 0;
         /**
@@ -65,6 +73,7 @@ function addRootTo(id, course_no, course_name) {
     bubble.innerHTML= '<div slot="course-number">' + course_no + '</div>';
     bubble.innerHTML+= '<div slot="course-name">' + course_name + '</div>';
     elem.appendChild(bubble);
+    bubble.id = course_no;
     elem.appendChild(document.createElement("br"));
 }
 
@@ -78,6 +87,7 @@ function addBranchTo(id, course_no, course_name){
     bubble.innerHTML= '<div slot="course-number">' + course_no + '</div>';
     bubble.innerHTML+= '<div slot="course-name">' + course_name + '</div>';
     elem.appendChild(bubble);
+    bubble.id = course_no;
     elem.appendChild(document.createElement("br"));
 }
 
@@ -91,6 +101,7 @@ function addLeafTo(id, course_no, course_name){
     bubble.innerHTML= '<div slot="course-number">' + course_no + '</div>';
     bubble.innerHTML+= '<div slot="course-name">' + course_name + '</div>';
     elem.appendChild(bubble);
+    bubble.id = course_no;
     elem.appendChild(document.createElement("br"));
 }
 
@@ -104,10 +115,13 @@ function addStandAloneTo(id, course_no, course_name){
     bubble.innerHTML= '<div slot="course-number">' + course_no + '</div>';
     bubble.innerHTML+= '<div slot="course-name">' + course_name + '</div>';
     elem.appendChild(bubble);
+    bubble.id = course_no;
     elem.appendChild(document.createElement("br"));
 }
 
 /**
+ * This algorithm assigns values to classes to show where they should be placed
+ *
  * @param courseID {number} course ID
  * @param info {Info} info
  */
@@ -137,6 +151,13 @@ function calculateDepth(courseID, info) {
     }
 
     info.valuesArrayReverse.set(courseID, maxDepth);
+    if(info.valuesArray.has(maxDepth)) {
+        let a = info.valuesArray.get(maxDepth);
+        a = a.concat([courseID]);
+        info.valuesArray.set(maxDepth, a);
+    } else {
+        info.valuesArray.set(maxDepth, [courseID]);
+    }
     return maxDepth;
 
 }
@@ -167,6 +188,7 @@ async function getInfo() {
 
     // Step 1: organize prereqs and coreqs into an map.
     for(let i = 0; i < prereqs.length; i++) {
+        info.isPrereq.push(prereqs[i]['prereq']);
         if(info.prereqs.get(prereqs[i]['course']) === undefined) {
             info.prereqs.set(prereqs[i]['course'], [prereqs[i]['prereq']]);
         } else {
@@ -185,17 +207,179 @@ async function getInfo() {
     }
 
     // Step 2: Think of classes as a graph. For each class, find the quickest path to the Root.
-    // Todo: This will re-evaluate values many times. Make this more efficient. gip20@pitt.edu
 
     for(let i = 0; i < info.classes.length; i++) {
-        calculateDepth(info.classes[i]['id'], info)
+        let d = calculateDepth(info.classes[i]['id'], info) + 1;
+        info.minSemesters = Math.max(d, info.minSemesters);
     }
 
     return info;
 }
 
+function drawTable(cols) {
+    let body = document.getElementById('main-body');
+    body.innerHTML = '';
+    let table = document.createElement("table");
+    table.id = "pathway";
+
+        let row = document.createElement("tr");
+        for (let c = 1; c <= cols; c++) {
+            let cell = document.createElement("td");
+            cell.innerHTML = "Semester " + c;
+            cell.id = "semester-" + c + "-label";
+            row.appendChild(cell);
+        }
+        table.appendChild(row);
+    body.appendChild(table);
+}
+
+function addRow(semesters) {
+    let table = document.getElementById("pathway");
+    let tr = document.createElement("tr");
+    let currentRows = document.querySelectorAll("#pathway tr").length;
+    for(let i = 0; i < semesters; i++) {
+        let td = document.createElement("td");
+        td.id= (currentRows - 1) + "_" + i;
+        tr.appendChild(td);
+    }
+    table.appendChild(tr);
+}
+
+/**
+ *
+ * @param info {Info}
+ * @param semesters {number}
+ */
+function place_dynamic(info, semesters) {
+    let currentRows = document.querySelectorAll("#pathway tr").length - 1;
+    let classesPerSemester = Math.floor(info.classes.length / semesters);
+    let remainingClasses = info.classes.length % semesters;
+    let placed = [];
+    let lastInRow = [];
+    let currentColCount = 0;
+    let currentCol = 0;
+
+    // TODO: Fix this inefficient algorithm
+    // TODO: The created pathway should can be compressed vertically.
+    while(placed.length < info.classes.length) {
+        for(let i = 0; i < info.classes.length; i++) {
+            // Fix the col
+            if(remainingClasses > 0) {
+                if(currentColCount === classesPerSemester + 1) {
+                    remainingClasses--;
+                    currentColCount = 0;
+                    currentCol++;
+                }
+            } else if(currentColCount === classesPerSemester) {
+                currentColCount = 0;
+                currentCol++
+            }
+
+            //Place the class
+            if(!placed.includes(info.classes[i]['id'])) {
+                let type;
+                let currentClass = info.classes[i];
+                /**
+                 *
+                 * @type {num[]}
+                 */
+                let preReqs = info.prereqs.get(currentClass['id']);
+
+                // Figure out what type of node the current element is.
+
+                if(preReqs === undefined && info.isPrereq.includes(currentClass['id'])) {
+                    type = ClassType.ROOT;
+                } else if(preReqs === undefined && !info.isPrereq.includes(currentClass['id'])) {
+                    type = ClassType.STAND_ALONE;
+                }
+                else if(preReqs !== undefined && info.isPrereq.includes(currentClass['id'])) {
+                    type = ClassType.BRANCH;
+                } else {
+                    type = ClassType.LEAF;
+                }
+
+                if(type === ClassType.ROOT || type === ClassType.STAND_ALONE) {
+                    // Make sure Coreqs are placed first!
+                    let canPlace = true;
+                    let coreqs = info.coreqs.get(currentClass['id']);
+                    if(coreqs !== undefined) {
+                        for(let j = 0; j < coreqs.length; j++) {
+                            if(!placed.includes(coreqs[j])) {
+                                canPlace = false;
+                                break;
+                            }
+                        }
+                    }
+
+                    // If the coreqs were not placed, try placing the next class on the list.
+                    if(!canPlace) {
+                        continue;
+                    }
+
+                    currentRows++;
+                    currentColCount++;
+                    addRow(semesters);
+                    if(type === ClassType.ROOT) {
+                        addRootTo((currentRows - 1) + "_" + currentCol, currentClass['id'], currentClass['title']);
+                    } else {
+                        addStandAloneTo((currentRows - 1) + "_" + currentCol, currentClass['id'], currentClass['title']);
+                    }
+                    placed.push(currentClass['id']);
+                    lastInRow.push(currentClass['id']);
+                } else {
+
+                    let canPlace = true;
+                    let coreqs = info.coreqs.get(currentClass['id']);
+                    if(coreqs !== undefined) {
+                        for(let j = 0; j < coreqs.length; j++) {
+                            if(!placed.includes(coreqs[j])) {
+                                canPlace = false;
+                                break;
+                            }
+                        }
+                    }
+
+                    if(!canPlace) {
+                        continue;
+                    }
+
+                    let j = 0;
+                    for(j = 0; j < lastInRow.length; j++) {
+                        // noinspection JSObjectNullOrUndefined
+                        if(preReqs.includes(lastInRow[j])) break;
+                    }
+                    if(type === ClassType.LEAF) {
+                        addLeafTo(j + "_" + currentCol, currentClass['id'], currentClass['title'])
+                    } else {
+                        addBranchTo(j + "_" + currentCol, currentClass['id'], currentClass['title']);
+                    }
+                    attachElements(document.getElementById(lastInRow[j]), document.getElementById(currentClass['id']));
+                    lastInRow[j] = currentClass['id'];
+                    placed.push(currentClass['id']);
+                }
+
+            }
+        }
+    }
+    console.log(placed);
+}
+
+/**
+ * TODO: Remove this in final revision
+ *
+ * Generates the CS Minor in the degree pathway program algorithmically.
+ * @returns {Promise<void>}
+ */
 async function demo() {
     let info = await getInfo();
-    drawTable();
-    //place();
+    let semesters = parseInt(document.getElementById("semesters").value);
+    if(isNaN(semesters) || semesters < info.minSemesters) {
+        alert("Please enter a value greater than " + (info.minSemesters - 1) + " for this major.");
+        return;
+    } else if(semesters > info.classes.length) {
+        alert("Too many semesters!!");
+        return;
+    }
+    drawTable(semesters);
+    place_dynamic(info, semesters);
 }
