@@ -12,6 +12,10 @@ html, body {
     font-style: normal;
 }
 
+button {
+    color: #dddddd;
+}
+
 td {
     /* using fixed width for demo */
     width: 400px;

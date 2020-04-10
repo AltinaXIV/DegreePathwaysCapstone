@@ -258,10 +258,25 @@ function place_dynamic(info, semesters) {
     let lastInRow = [];
     let currentColCount = 0;
     let currentCol = 0;
+    let allPrereqsPlaced = false;
 
     // TODO: Fix this inefficient algorithm
     // TODO: The created pathway should can be compressed vertically.
     while(placed.length < info.classes.length) {
+        let t = info.prereqs.values();
+
+        if(!allPrereqsPlaced){
+            allPrereqsPlaced = true;
+            for(let u = 0; u < info.prereqs.size; u++) {
+                let val = t.next().value;
+                for(let l = 0; l < val.length; l++) {
+                    if(!placed.includes(val[l])) {
+                        allPrereqsPlaced = false;
+                        break;
+                    }
+                }
+            }
+        }
         for(let i = 0; i < info.classes.length; i++) {
             // Fix the col
             if(remainingClasses > 0) {
@@ -296,6 +311,46 @@ function place_dynamic(info, semesters) {
                     type = ClassType.BRANCH;
                 } else {
                     type = ClassType.LEAF;
+                }
+
+                let isCoreqOfPrereq = false;
+                let isPrereq = false;
+
+                if(!allPrereqsPlaced) {
+
+                    // Check if the current class is a prereq of another class
+                    const allPrereqs = info.prereqs.values();
+                    for(let z = 0; z < info.prereqs.size; z++) {
+                        let p = allPrereqs.next().value;
+                        for(let y = 0; y < p.length; y++) {
+                            if(currentClass['id'] === p[y]) {
+                                isPrereq = true;
+                                break;
+                            }
+                        }
+                        if(isPrereq) break;
+                    }
+
+                    // If the current class is not a prereq, check if it is a coreq of a prereq
+                    if(!isPrereq) {
+                        let allCoreqKeys = info.coreqs.keys();
+                        let allCoreqValues = info.coreqs.values();
+                        for(let z = 0; z < info.coreqs.size; z++) {
+                            let k = allCoreqKeys.next().value;
+                            let v = allCoreqValues.next().value;
+                            for(let y = 0; y < v.length; v++) {
+                                if(currentClass['id'] === v[y] && info.isPrereq.includes(k)) {
+                                    isCoreqOfPrereq = true;
+                                    break;
+                                }
+                            }
+                            if(isCoreqOfPrereq) break;
+                        }
+                    }
+                }
+
+                if(!isCoreqOfPrereq && !allPrereqsPlaced && !isPrereq) {
+                    continue;
                 }
 
                 if(type === ClassType.ROOT || type === ClassType.STAND_ALONE) {
@@ -357,7 +412,6 @@ function place_dynamic(info, semesters) {
                     lastInRow[j] = currentClass['id'];
                     placed.push(currentClass['id']);
                 }
-
             }
         }
     }
