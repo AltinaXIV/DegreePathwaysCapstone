@@ -261,7 +261,7 @@ function place_dynamic(info, semesters) {
     let allPrereqsPlaced = false;
 
     // TODO: Fix this inefficient algorithm
-    // TODO: The created pathway should can be compressed vertically.
+    // TODO: The created pathway can be compressed vertically.
     while(placed.length < info.classes.length) {
         let t = info.prereqs.values();
 
