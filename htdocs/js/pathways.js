@@ -408,7 +408,10 @@ function place_dynamic(info, semesters) {
                     } else {
                         addBranchTo(j + "_" + currentCol, currentClass['id'], currentClass['title']);
                     }
-                    attachElements(document.getElementById(lastInRow[j]), document.getElementById(currentClass['id']));
+                    setTimeout(() => {
+                        attachElements(document.getElementById(lastInRow[j]), document.getElementById(currentClass['id']));
+                        console.log("Connecting " + lastInRow[j] + " to " + currentClass['id']);
+                    },200);
                     currentColCount++;
                     lastInRow[j] = currentClass['id'];
                     placed.push(currentClass['id']);
