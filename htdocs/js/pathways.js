@@ -408,15 +408,6 @@ function place_dynamic(info, semesters) {
                     } else {
                         addBranchTo(j + "_" + currentCol, currentClass['id'], currentClass['title']);
                     }
-                    /* TODO:
-                        This is a really poor way of drawing lines. The elements don't render instantly causing lines to
-                        be drawn in the wrong place. Setting a timeout fixes this, but this is not a good fix.
-                        gip20
-                     */
-                    setTimeout(() => {
-                        attachElements(document.getElementById(lastInRow[j]), document.getElementById(currentClass['id']));
-                        console.log("Connecting " + lastInRow[j] + " to " + currentClass['id']);
-                    },200);
                     currentColCount++;
                     lastInRow[j] = currentClass['id'];
                     placed.push(currentClass['id']);
@@ -424,7 +415,25 @@ function place_dynamic(info, semesters) {
             }
         }
     }
-    console.log(placed);
+
+    // Finally, connect all prereqs to each other.
+    /* TODO:
+        This is a really poor way of drawing lines. The elements don't render instantly causing lines to
+        be drawn in the wrong place. Setting a timeout fixes this, but this is not a good fix.
+        gip20
+    */
+    let k = info.prereqs.keys();
+    let v = info.prereqs.values();
+    for(let i = 0; i < info.prereqs.size; i++) {
+        setTimeout(() => {
+            let curKey = k.next().value.toString();
+            let curVal = v.next().value;
+            curVal.forEach((vPos) => {
+                attachElements(document.getElementById(curKey), document.getElementById(vPos.toString()));
+            });
+            console.log("attaching " + curKey + " to " + curVal);
+        },200);
+    }
 }
 
 /**
