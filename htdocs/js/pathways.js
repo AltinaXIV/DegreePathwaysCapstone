@@ -436,6 +436,13 @@ function place_dynamic(info, semesters) {
     }
 }
 
+function deleteCurrentLines() {
+    let svgs = document.querySelectorAll('svg');
+    svgs.forEach((svg) => {
+        svg.remove();
+    });
+}
+
 /**
  * TODO: Remove this in final revision
  *
@@ -443,6 +450,7 @@ function place_dynamic(info, semesters) {
  * @returns {Promise<void>}
  */
 async function demo() {
+    deleteCurrentLines();
     let info = await getInfo();
     let semesters = parseInt(document.getElementById("semesters").value);
     if(isNaN(semesters) || semesters < info.minSemesters) {
