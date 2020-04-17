@@ -1,11 +1,11 @@
 <?php
 
 $mysqli = new mysqli('localhost', 'root', '');
-if(isset($_GET['q'])) $q = $mysqli->real_escape_string($_GET['q']);
+if (isset($_GET['q'])) $q = $mysqli->real_escape_string($_GET['q']);
 
 echo '{';
 
-if($_GET['a'] == "class" && isset($q)) {
+if ($_GET['a'] == "class" && isset($q)) {
     $result = $mysqli->query('SELECT * FROM `test`.`Course` WHERE `course_id` = $q');
     $row = $result->fetch_assoc();
     echo
@@ -16,11 +16,11 @@ if($_GET['a'] == "class" && isset($q)) {
         '"fall":' . $row['fall'] . ',' .
         '"spring":' . $row['spring'] . ',' .
         '"summer":' . $row['summer'];
-} else if($_GET['a'] == 'major') {
+} else if ($_GET['a'] == 'major') {
     $result = $mysqli->query('SELECT * FROM `test`.`Course`');
     echo '"classes":[';
     $num_rows = $result->num_rows;
-    for($i = 0; $i < $num_rows; $i++) {
+    for ($i = 0; $i < $num_rows; $i++) {
         $row = $result->fetch_assoc();
         echo
             '{' .
@@ -32,39 +32,39 @@ if($_GET['a'] == "class" && isset($q)) {
             '"spring":' . $row['spring'] . ',' .
             '"summer":' . $row['summer'] .
             '}';
-        if($i != $num_rows - 1) {
+        if ($i != $num_rows - 1) {
             echo ',';
         }
     }
     echo ']';
-} else if($_GET['a'] == 'prereq') {
+} else if ($_GET['a'] == 'prereq') {
     $result = $mysqli->query('SELECT * FROM `test`.`PreREQ`');
     echo '"prereqs":[';
     $num_rows = $result->num_rows;
-    for($i = 0; $i < $num_rows; $i++) {
+    for ($i = 0; $i < $num_rows; $i++) {
         $row = $result->fetch_assoc();
         echo
             '{' .
             '"course":' . $row['course_id'] . ',' .
             '"prereq":' . $row['pre_req_id'] .
             '}';
-        if($i != $num_rows - 1) {
+        if ($i != $num_rows - 1) {
             echo ",";
         }
     }
     echo ']';
-} else if($_GET['a'] == 'coreq') {
+} else if ($_GET['a'] == 'coreq') {
     $result = $mysqli->query('SELECT * FROM `test`.`CoREQ`');
     echo '"coreqs":[';
     $num_rows = $result->num_rows;
-    for($i = 0; $i < $num_rows; $i++) {
+    for ($i = 0; $i < $num_rows; $i++) {
         $row = $result->fetch_assoc();
         echo
             '{' .
             '"course":' . $row['course_id'] . ',' .
             '"coreq":' . $row['co_req_id'] .
             '}';
-        if($i != $num_rows - 1) {
+        if ($i != $num_rows - 1) {
             echo ",";
         }
     }

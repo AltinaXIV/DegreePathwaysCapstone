@@ -4,7 +4,7 @@ initializeTextInput();
 function activateLeftNav() {
     let topNav = document.getElementById("left-nav");
     let mainBody = document.getElementById("main-body");
-    if(topNav.classList.contains("active")) {
+    if (topNav.classList.contains("active")) {
         topNav.classList.remove("active");
         topNav.classList.add("inactive");
         mainBody.classList.remove("active");

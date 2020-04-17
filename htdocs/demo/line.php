@@ -6,29 +6,35 @@
                 padding: 0;
                 margin: 0;
             }
+
             #e1, #e2 {
                 position: relative;
                 display: block;
             }
+
             .col {
                 float: left;
                 width: 50%;
             }
+
             line {
                 stroke: #0e84b5;
                 stroke-width: 1;
             }
+
             path {
                 stroke: #0e84b5;
                 stroke-width: 1;
                 fill: transparent;
             }
+
             svg {
                 position: absolute;
                 z-index: -1;
                 margin: 0;
                 padding: 0;
             }
+
             #moveButton {
                 position: absolute;
                 left: 400px;

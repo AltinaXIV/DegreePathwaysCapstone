@@ -20,7 +20,9 @@ function showRipple(event, ripple, rippleContainer) {
     let rippler = document.createElement("span");
     rippleContainer.appendChild(rippler);
     rippler.setAttribute("style", style);
-    setTimeout(() => {rippleContainer.firstChild.remove();}, 600);
+    setTimeout(() => {
+        rippleContainer.firstChild.remove();
+    }, 600);
 }
 
 /**
@@ -30,7 +32,7 @@ function initializeRipple() {
     "use strict";
 
     let ripples = document.querySelectorAll("[ripple]");
-    for(let i = 0; i < ripples.length; i++) {
+    for (let i = 0; i < ripples.length; i++) {
         let ripple = ripples[i];
         let rippleContainer = document.createElement("div");
         rippleContainer.setAttribute("class", "ripple-container");
@@ -45,7 +47,7 @@ function initializeTextInput() {
     "use strict";
 
     let textFields = document.querySelectorAll(".material-input-text");
-    for(let i = 0; i < textFields.length; i++) {
+    for (let i = 0; i < textFields.length; i++) {
         let textField = textFields[i].childNodes[1];
         let label = textFields[i].childNodes[4];
         let highlight = document.createElement("div");
@@ -60,11 +62,13 @@ function initializeTextInput() {
             textFields[i].appendChild(newHighlight);
             let oldHighlight = highlight;
             highlight = newHighlight;
-            setTimeout(() => { oldHighlight.remove(); }, 300);
+            setTimeout(() => {
+                oldHighlight.remove();
+            }, 300);
             highlight.style.width = textField.getBoundingClientRect().width + "px";
         });
         textField.addEventListener("blur", () => {
-            if(textField.value === "") {
+            if (textField.value === "") {
                 label.classList.remove("material-text-label-up");
                 label.classList.add("material-text-label-down");
             }

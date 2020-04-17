@@ -13,7 +13,7 @@
 }
 
 .left-nav-container.active {
-    animation:  show-left-nav 400ms forwards;
+    animation: show-left-nav 400ms forwards;
 }
 
 .left-nav-container.inactive {

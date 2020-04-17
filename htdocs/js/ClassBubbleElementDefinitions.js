@@ -6,13 +6,13 @@ function makeCompact(shadow) {
     "use strict";
 
     const childNodes = Array.from(shadow.childNodes);
-    for(let i = 0; i < childNodes.length; i++) {
+    for (let i = 0; i < childNodes.length; i++) {
         let child = childNodes[i];
-        if(child.className === undefined) {
+        if (child.className === undefined) {
             continue;
         }
 
-        if(child.classList.contains("class-bubble")) {
+        if (child.classList.contains("class-bubble")) {
             child.classList.add("compact");
             return
         }
@@ -27,13 +27,13 @@ function removeCompact(shadow) {
     "use strict";
 
     const childNodes = Array.from(shadow.childNodes);
-    for(let i = 0; i < childNodes.length; i++) {
+    for (let i = 0; i < childNodes.length; i++) {
         let child = childNodes[i];
-        if(child.className === undefined) {
+        if (child.className === undefined) {
             continue;
         }
 
-        if(child.classList.contains("class-bubble")) {
+        if (child.classList.contains("class-bubble")) {
             child.classList.remove("compact");
             return
         }
@@ -50,17 +50,19 @@ class RootClassBubble extends HTMLElement {
         this.shadow.append(document.getElementById('rootClassBubbleTemplate').content.cloneNode(true));
     }
 
-    static get observedAttributes() { return ["href", "compact"];}
+    static get observedAttributes() {
+        return ["href", "compact"];
+    }
 
     attributeChangedCallback(name, oldValue, newValue) {
-        if(name === "href") {
+        if (name === "href") {
             this.addEventListener("click", () => {
                 document.location.href = newValue;
             });
         }
 
-        if(name === "compact") {
-            if(newValue !== null) {
+        if (name === "compact") {
+            if (newValue !== null) {
                 makeCompact(this.shadow)
             } else {
                 removeCompact(this.shadow);
@@ -81,17 +83,19 @@ class BranchClassBubble extends HTMLElement {
         this.shadow.append(document.getElementById('branchClassBubbleTemplate').content.cloneNode(true));
     }
 
-    static get observedAttributes() { return ["href", "compact"];}
+    static get observedAttributes() {
+        return ["href", "compact"];
+    }
 
     attributeChangedCallback(name, oldValue, newValue) {
-        if(name === "href") {
+        if (name === "href") {
             this.addEventListener("click", () => {
                 document.location.href = newValue;
             });
         }
 
-        if(name === "compact") {
-            if(newValue !== null) {
+        if (name === "compact") {
+            if (newValue !== null) {
                 makeCompact(this.shadow)
             } else {
                 removeCompact(this.shadow);
@@ -111,17 +115,19 @@ class LeafClassBubble extends HTMLElement {
         this.shadow.append(document.getElementById('leafClassBubbleTemplate').content.cloneNode(true));
     }
 
-    static get observedAttributes() { return ["href", "compact"];}
+    static get observedAttributes() {
+        return ["href", "compact"];
+    }
 
     attributeChangedCallback(name, oldValue, newValue) {
-        if(name === "href") {
+        if (name === "href") {
             this.addEventListener("click", () => {
                 document.location.href = newValue;
             });
         }
 
-        if(name === "compact") {
-            if(newValue !== null) {
+        if (name === "compact") {
+            if (newValue !== null) {
                 makeCompact(this.shadow)
             } else {
                 removeCompact(this.shadow);
@@ -141,17 +147,19 @@ class StandAloneClassBubble extends HTMLElement {
         this.shadow.append(document.getElementById('stand-aloneClassBubbleTemplate').content.cloneNode(true));
     }
 
-    static get observedAttributes() { return ["href", "compact"];}
+    static get observedAttributes() {
+        return ["href", "compact"];
+    }
 
     attributeChangedCallback(name, oldValue, newValue) {
-        if(name === "href") {
+        if (name === "href") {
             this.addEventListener("click", () => {
                 document.location.href = newValue;
             });
         }
 
-        if(name === "compact") {
-            if(newValue !== null) {
+        if (name === "compact") {
+            if (newValue !== null) {
                 makeCompact(this.shadow)
             } else {
                 removeCompact(this.shadow);
@@ -160,4 +168,4 @@ class StandAloneClassBubble extends HTMLElement {
     }
 }
 
-customElements.define('stand-alone-class-bubble', StandAloneClassBubble );
+customElements.define('stand-alone-class-bubble', StandAloneClassBubble);

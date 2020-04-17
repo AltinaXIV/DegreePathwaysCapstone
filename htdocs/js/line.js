@@ -87,7 +87,7 @@ function createDownRightCurve(x1, y1, finalY) {
  * @param y2 {number} final y coordinate
  * @returns {SVGLineElement}
  */
-function setLine(line, x1, y1 ,x2, y2) {
+function setLine(line, x1, y1, x2, y2) {
     line.setAttribute("x1", x1.toString());
     line.setAttribute("y1", y1.toString());
     line.setAttribute("x2", x2.toString());
@@ -163,7 +163,7 @@ function attachElements(firstElement, secondElement) {
             svg.appendChild(curve);
             currentPositionX += 5;
             currentPositionY += Math.min(heightDif / 2, 20);
-            if(height - currentPositionY > 6) {
+            if (height - currentPositionY > 6) {
                 line = createLine();
                 line = setLine(line, currentPositionX, currentPositionY, currentPositionX, height - 6);
                 currentPositionY = height - 6;
@@ -189,7 +189,7 @@ function attachElements(firstElement, secondElement) {
             currentPositionX += 5;
             currentPositionY -= Math.min(heightDif / 2, 20);
             currentPositionY = Math.max(currentPositionY, 6);
-            if(currentPositionY > 6) {
+            if (currentPositionY > 6) {
                 line = createLine();
                 line = setLine(line, currentPositionX, currentPositionY, currentPositionX, 6);
                 currentPositionY = 6;

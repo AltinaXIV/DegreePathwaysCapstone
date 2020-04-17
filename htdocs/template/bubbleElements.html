@@ -1,7 +1,7 @@
 <!-- To use this, use the custom element <root-class-bubble> -->
 
 <template id="rootClassBubbleTemplate">
-    <link rel="stylesheet" type="text/css" href="/css/classBubble.css">
+    <link href="/css/classBubble.css" rel="stylesheet" type="text/css">
     <div class="root-class-bubble class-bubble">
         <slot name="course-number">XXX-0000</slot>
         <slot name="course-name">COURSE NAME</slot>
@@ -15,7 +15,7 @@
 <!-- To use this, use the custom element <branch-class-bubble> -->
 
 <template id="branchClassBubbleTemplate">
-    <link rel="stylesheet" type="text/css" href="/css/classBubble.css">
+    <link href="/css/classBubble.css" rel="stylesheet" type="text/css">
     <div class="branch-class-bubble class-bubble">
         <slot name="course-number">XXX-0000</slot>
         <slot name="course-name">COURSE NAME</slot>
@@ -29,10 +29,10 @@
 <!-- To use this, use the custom element <leaf-class-bubble> -->
 
 <template id="leafClassBubbleTemplate">
-    <link rel="stylesheet" type="text/css" href="/css/classBubble.css">
+    <link href="/css/classBubble.css" rel="stylesheet" type="text/css">
     <div class="leaf-class-bubble class-bubble">
         <slot name="course-number">XXX-0000</slot>
-        <slot name="course-name" id="test">COURSE NAME</slot>
+        <slot id="test" name="course-name">COURSE NAME</slot>
         <span class="bubble-tooltip-span">
             <slot name="bubble-tooltip">No description</slot>
         </span>
@@ -43,7 +43,7 @@
 <!-- To use this, use the custom element <stand-alone-class-bubble> -->
 
 <template id="stand-aloneClassBubbleTemplate">
-    <link rel="stylesheet" type="text/css" href="/css/classBubble.css">
+    <link href="/css/classBubble.css" rel="stylesheet" type="text/css">
     <div class="stand-alone-class-bubble class-bubble">
         <slot name="course-number">XXX-0000</slot>
         <slot name="course-name">COURSE NAME</slot>

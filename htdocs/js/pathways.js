@@ -182,8 +182,6 @@ async function getInfo() {
     prereqs = prereqs['prereqs'];
     coreqs = coreqs['coreqs'];
 
-    console.log(prereqs);
-
     // Calculate minimum number of semesters needed to finish.
 
     // Step 1: organize prereqs and coreqs into an map.
@@ -425,7 +423,6 @@ function place_dynamic(info, semesters) {
         curVal.forEach((vPos) => {
             attachElements(document.getElementById(curKey), document.getElementById(vPos.toString()));
         });
-        console.log("attaching " + curKey + " to " + curVal);
     }
 }
 
