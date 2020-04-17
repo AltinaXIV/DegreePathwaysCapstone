@@ -7,6 +7,30 @@ const ClassType = {
     STAND_ALONE: 3
 };
 
+
+let ColorGenerator = class {
+
+    #COLOR_GENERATOR;
+    #COLOR_LIST = ['#f44366', '#e91e63', '#9c27b0', '#673ab7',
+    '#3f51b5', '#2196f3', '#03a9f4', '#00bcd4',
+    '#009688', '#4caf50', '#8bc34a', '#9e9d24',
+    '#fbc02d', '#ff9800', '#ff5722', '#8d6e63',
+    '#607d8b'];
+
+    constructor() {
+        this.#COLOR_GENERATOR = Math.floor(Math.random() * this.#COLOR_LIST.length);
+    }
+
+    next() {
+        let color = this.#COLOR_LIST[this.#COLOR_GENERATOR];
+        this.#COLOR_GENERATOR++;
+        if(this.#COLOR_GENERATOR >= this.#COLOR_LIST.length) {
+            this.#COLOR_GENERATOR = 0;
+        }
+        return color;
+    }
+}
+
 let Info = class {
     constructor() {
         this.classes = {};
@@ -38,6 +62,8 @@ let Info = class {
         this.valuesArrayReverse = new Map();
     };
 };
+
+let color = new ColorGenerator();
 
 /**
  * Switches all class bubbles in or out of the compact view depending on the status of the checkbox
@@ -421,7 +447,7 @@ function place_dynamic(info, semesters) {
         let curKey = k.next().value.toString();
         let curVal = v.next().value;
         curVal.forEach((vPos) => {
-            attachElements(document.getElementById(curKey), document.getElementById(vPos.toString()));
+            attachElements(document.getElementById(curKey), document.getElementById(vPos.toString()), color.next());
         });
     }
 }

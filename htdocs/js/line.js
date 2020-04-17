@@ -100,8 +100,9 @@ function setLine(line, x1, y1, x2, y2) {
  *
  * @param firstElement {HTMLElement}
  * @param secondElement {HTMLElement}
+ * @param svgColor {String}
  */
-function attachElements(firstElement, secondElement) {
+function attachElements(firstElement, secondElement, svgColor) {
     "use strict";
 
     if (firstElement === secondElement) {
@@ -109,6 +110,7 @@ function attachElements(firstElement, secondElement) {
     }
 
     let canvas = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    canvas.style.stroke = svgColor;
 
     /**
      * Draws the line

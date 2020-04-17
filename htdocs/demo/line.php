@@ -44,7 +44,7 @@
         <title>Line Demo</title>
         <meta charset="UTF-8">
     </head>
-    <body onload="attachElements(document.getElementById('e1'), document.getElementById('e2'))">
+    <body onload="attachElements(document.getElementById('e1'), document.getElementById('e2'), '#ff00ff')">
         <?php include '../template/bubbleElements.html' ?>
         <script src="/js/line.js"></script>
         <script>
@@ -73,7 +73,7 @@
 
                 //e2.style.top = y + "px";
                 e2.style.top = 60 + "px";
-                attachElements(e1, e2);
+                attachElements(e1, e2, '#ff00ff');
 
             }
         </script>
