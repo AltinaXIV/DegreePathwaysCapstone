@@ -47,10 +47,10 @@ let Info = class {
 function switchCompact(checkbox) {
     let allBubbles = document.querySelectorAll("root-class-bubble, branch-class-bubble, leaf-class-bubble," +
         "stand-alone-class-bubble");
-    if(checkbox.checked) {
+    if (checkbox.checked) {
         enableCompactView = true;
         allBubbles.forEach(bubble => {
-           bubble.setAttribute("compact", "");
+            bubble.setAttribute("compact", "");
         });
     } else {
         enableCompactView = false;
@@ -66,54 +66,54 @@ function switchCompact(checkbox) {
 function addRootTo(id, course_no, course_name) {
     let elem = document.getElementById(id);
     let bubble = document.createElement("root-class-bubble");
-    if(enableCompactView) {
-        bubble.setAttribute("compact" ,"");
+    if (enableCompactView) {
+        bubble.setAttribute("compact", "");
     }
     bubble.id = course_no;
-    bubble.innerHTML= '<div slot="course-number">' + course_no + '</div>';
-    bubble.innerHTML+= '<div slot="course-name">' + course_name + '</div>';
+    bubble.innerHTML = '<div slot="course-number">' + course_no + '</div>';
+    bubble.innerHTML += '<div slot="course-name">' + course_name + '</div>';
     elem.appendChild(bubble);
     bubble.id = course_no;
     elem.appendChild(document.createElement("br"));
 }
 
-function addBranchTo(id, course_no, course_name){
+function addBranchTo(id, course_no, course_name) {
     let elem = document.getElementById(id);
     let bubble = document.createElement("branch-class-bubble");
-    if(enableCompactView) {
-        bubble.setAttribute("compact" ,"");
+    if (enableCompactView) {
+        bubble.setAttribute("compact", "");
     }
     bubble.id = course_no;
-    bubble.innerHTML= '<div slot="course-number">' + course_no + '</div>';
-    bubble.innerHTML+= '<div slot="course-name">' + course_name + '</div>';
+    bubble.innerHTML = '<div slot="course-number">' + course_no + '</div>';
+    bubble.innerHTML += '<div slot="course-name">' + course_name + '</div>';
     elem.appendChild(bubble);
     bubble.id = course_no;
     elem.appendChild(document.createElement("br"));
 }
 
-function addLeafTo(id, course_no, course_name){
+function addLeafTo(id, course_no, course_name) {
     let elem = document.getElementById(id);
     let bubble = document.createElement("leaf-class-bubble");
-    if(enableCompactView) {
-        bubble.setAttribute("compact" ,"");
+    if (enableCompactView) {
+        bubble.setAttribute("compact", "");
     }
     bubble.id = course_no;
-    bubble.innerHTML= '<div slot="course-number">' + course_no + '</div>';
-    bubble.innerHTML+= '<div slot="course-name">' + course_name + '</div>';
+    bubble.innerHTML = '<div slot="course-number">' + course_no + '</div>';
+    bubble.innerHTML += '<div slot="course-name">' + course_name + '</div>';
     elem.appendChild(bubble);
     bubble.id = course_no;
     elem.appendChild(document.createElement("br"));
 }
 
-function addStandAloneTo(id, course_no, course_name){
+function addStandAloneTo(id, course_no, course_name) {
     let elem = document.getElementById(id);
     let bubble = document.createElement("stand-alone-class-bubble");
-    if(enableCompactView) {
-        bubble.setAttribute("compact" ,"");
+    if (enableCompactView) {
+        bubble.setAttribute("compact", "");
     }
     bubble.id = course_no;
-    bubble.innerHTML= '<div slot="course-number">' + course_no + '</div>';
-    bubble.innerHTML+= '<div slot="course-name">' + course_name + '</div>';
+    bubble.innerHTML = '<div slot="course-number">' + course_no + '</div>';
+    bubble.innerHTML += '<div slot="course-name">' + course_name + '</div>';
     elem.appendChild(bubble);
     bubble.id = course_no;
     elem.appendChild(document.createElement("br"));
@@ -128,14 +128,14 @@ function addStandAloneTo(id, course_no, course_name){
 function calculateDepth(courseID, info) {
     let maxDepth = 0;
 
-    if(info.valuesArrayReverse.has(courseID)) {
+    if (info.valuesArrayReverse.has(courseID)) {
         return info.valuesArrayReverse.get(courseID);
     }
 
     // Get the prereqs and iterate through them
     let prereqs = info.prereqs.get(courseID);
-    if(prereqs !== undefined) {
-        for(let i = 0; i < prereqs.length; i++) {
+    if (prereqs !== undefined) {
+        for (let i = 0; i < prereqs.length; i++) {
             let d = calculateDepth(prereqs[i], info) + 1;
             maxDepth = Math.max(maxDepth, d);
         }
@@ -143,15 +143,15 @@ function calculateDepth(courseID, info) {
 
     // And now co-reqs...
     let coreqs = info.coreqs.get(courseID);
-    if(coreqs !== undefined) {
-        for(let i = 0; i < coreqs.length; i++) {
+    if (coreqs !== undefined) {
+        for (let i = 0; i < coreqs.length; i++) {
             let d = calculateDepth(coreqs[i], info);
             maxDepth = Math.max(maxDepth, d);
         }
     }
 
     info.valuesArrayReverse.set(courseID, maxDepth);
-    if(info.valuesArray.has(maxDepth)) {
+    if (info.valuesArray.has(maxDepth)) {
         let a = info.valuesArray.get(maxDepth);
         a = a.concat([courseID]);
         info.valuesArray.set(maxDepth, a);
@@ -187,9 +187,9 @@ async function getInfo() {
     // Calculate minimum number of semesters needed to finish.
 
     // Step 1: organize prereqs and coreqs into an map.
-    for(let i = 0; i < prereqs.length; i++) {
+    for (let i = 0; i < prereqs.length; i++) {
         info.isPrereq.push(prereqs[i]['prereq']);
-        if(info.prereqs.get(prereqs[i]['course']) === undefined) {
+        if (info.prereqs.get(prereqs[i]['course']) === undefined) {
             info.prereqs.set(prereqs[i]['course'], [prereqs[i]['prereq']]);
         } else {
             let v = info.prereqs.get(prereqs[i]['course']);
@@ -197,8 +197,8 @@ async function getInfo() {
         }
     }
 
-    for(let i = 0; i < coreqs.length; i++) {
-        if(info.coreqs.get(coreqs[i]['course']) === undefined) {
+    for (let i = 0; i < coreqs.length; i++) {
+        if (info.coreqs.get(coreqs[i]['course']) === undefined) {
             info.coreqs.set(coreqs[i]['course'], [coreqs[i]['coreq']]);
         } else {
             let v = info.coreqs.get(coreqs[i]['course']);
@@ -208,7 +208,7 @@ async function getInfo() {
 
     // Step 2: Think of classes as a graph. For each class, find the quickest path to the Root.
 
-    for(let i = 0; i < info.classes.length; i++) {
+    for (let i = 0; i < info.classes.length; i++) {
         let d = calculateDepth(info.classes[i]['id'], info) + 1;
         info.minSemesters = Math.max(d, info.minSemesters);
     }
@@ -222,14 +222,14 @@ function drawTable(cols) {
     let table = document.createElement("table");
     table.id = "pathway";
 
-        let row = document.createElement("tr");
-        for (let c = 1; c <= cols; c++) {
-            let cell = document.createElement("td");
-            cell.innerHTML = "Semester " + c;
-            cell.id = "semester-" + c + "-label";
-            row.appendChild(cell);
-        }
-        table.appendChild(row);
+    let row = document.createElement("tr");
+    for (let c = 1; c <= cols; c++) {
+        let cell = document.createElement("td");
+        cell.innerHTML = "Semester " + c;
+        cell.id = "semester-" + c + "-label";
+        row.appendChild(cell);
+    }
+    table.appendChild(row);
     body.appendChild(table);
 }
 
@@ -237,9 +237,9 @@ function addRow(semesters) {
     let table = document.getElementById("pathway");
     let tr = document.createElement("tr");
     let currentRows = document.querySelectorAll("#pathway tr").length;
-    for(let i = 0; i < semesters; i++) {
+    for (let i = 0; i < semesters; i++) {
         let td = document.createElement("td");
-        td.id= (currentRows - 1) + "_" + i;
+        td.id = (currentRows - 1) + "_" + i;
         tr.appendChild(td);
     }
     table.appendChild(tr);
@@ -262,36 +262,36 @@ function place_dynamic(info, semesters) {
 
     // TODO: Fix this inefficient algorithm
     // TODO: The created pathway can be compressed vertically.
-    while(placed.length < info.classes.length) {
+    while (placed.length < info.classes.length) {
         let t = info.prereqs.values();
 
-        if(!allPrereqsPlaced){
+        if (!allPrereqsPlaced) {
             allPrereqsPlaced = true;
-            for(let u = 0; u < info.prereqs.size; u++) {
+            for (let u = 0; u < info.prereqs.size; u++) {
                 let val = t.next().value;
-                for(let l = 0; l < val.length; l++) {
-                    if(!placed.includes(val[l])) {
+                for (let l = 0; l < val.length; l++) {
+                    if (!placed.includes(val[l])) {
                         allPrereqsPlaced = false;
                         break;
                     }
                 }
             }
         }
-        for(let i = 0; i < info.classes.length; i++) {
+        for (let i = 0; i < info.classes.length; i++) {
             // Fix the col
-            if(remainingClasses > 0) {
-                if(currentColCount === classesPerSemester + 1) {
+            if (remainingClasses > 0) {
+                if (currentColCount === classesPerSemester + 1) {
                     remainingClasses--;
                     currentColCount = 0;
                     currentCol++;
                 }
-            } else if(currentColCount === classesPerSemester) {
+            } else if (currentColCount === classesPerSemester) {
                 currentColCount = 0;
                 currentCol++
             }
 
             //Place the class
-            if(!placed.includes(info.classes[i]['id'])) {
+            if (!placed.includes(info.classes[i]['id'])) {
                 let type;
                 let currentClass = info.classes[i];
                 /**
@@ -302,12 +302,11 @@ function place_dynamic(info, semesters) {
 
                 // Figure out what type of node the current element is.
 
-                if(preReqs === undefined && info.isPrereq.includes(currentClass['id'])) {
+                if (preReqs === undefined && info.isPrereq.includes(currentClass['id'])) {
                     type = ClassType.ROOT;
-                } else if(preReqs === undefined && !info.isPrereq.includes(currentClass['id'])) {
+                } else if (preReqs === undefined && !info.isPrereq.includes(currentClass['id'])) {
                     type = ClassType.STAND_ALONE;
-                }
-                else if(preReqs !== undefined && info.isPrereq.includes(currentClass['id'])) {
+                } else if (preReqs !== undefined && info.isPrereq.includes(currentClass['id'])) {
                     type = ClassType.BRANCH;
                 } else {
                     type = ClassType.LEAF;
@@ -316,50 +315,50 @@ function place_dynamic(info, semesters) {
                 let isCoreqOfPrereq = false;
                 let isPrereq = false;
 
-                if(!allPrereqsPlaced) {
+                if (!allPrereqsPlaced) {
 
                     // Check if the current class is a prereq of another class
                     const allPrereqs = info.prereqs.values();
-                    for(let z = 0; z < info.prereqs.size; z++) {
+                    for (let z = 0; z < info.prereqs.size; z++) {
                         let p = allPrereqs.next().value;
-                        for(let y = 0; y < p.length; y++) {
-                            if(currentClass['id'] === p[y]) {
+                        for (let y = 0; y < p.length; y++) {
+                            if (currentClass['id'] === p[y]) {
                                 isPrereq = true;
                                 break;
                             }
                         }
-                        if(isPrereq) break;
+                        if (isPrereq) break;
                     }
 
                     // If the current class is not a prereq, check if it is a coreq of a prereq
-                    if(!isPrereq) {
+                    if (!isPrereq) {
                         let allCoreqKeys = info.coreqs.keys();
                         let allCoreqValues = info.coreqs.values();
-                        for(let z = 0; z < info.coreqs.size; z++) {
+                        for (let z = 0; z < info.coreqs.size; z++) {
                             let k = allCoreqKeys.next().value;
                             let v = allCoreqValues.next().value;
-                            for(let y = 0; y < v.length; v++) {
-                                if(currentClass['id'] === v[y] && info.isPrereq.includes(k)) {
+                            for (let y = 0; y < v.length; v++) {
+                                if (currentClass['id'] === v[y] && info.isPrereq.includes(k)) {
                                     isCoreqOfPrereq = true;
                                     break;
                                 }
                             }
-                            if(isCoreqOfPrereq) break;
+                            if (isCoreqOfPrereq) break;
                         }
                     }
                 }
 
-                if(!isCoreqOfPrereq && !allPrereqsPlaced && !isPrereq) {
+                if (!isCoreqOfPrereq && !allPrereqsPlaced && !isPrereq) {
                     continue;
                 }
 
-                if(type === ClassType.ROOT || type === ClassType.STAND_ALONE) {
+                if (type === ClassType.ROOT || type === ClassType.STAND_ALONE) {
                     // Make sure Coreqs are placed first!
                     let canPlace = true;
                     let coreqs = info.coreqs.get(currentClass['id']);
-                    if(coreqs !== undefined) {
-                        for(let j = 0; j < coreqs.length; j++) {
-                            if(!placed.includes(coreqs[j])) {
+                    if (coreqs !== undefined) {
+                        for (let j = 0; j < coreqs.length; j++) {
+                            if (!placed.includes(coreqs[j])) {
                                 canPlace = false;
                                 break;
                             }
@@ -367,14 +366,14 @@ function place_dynamic(info, semesters) {
                     }
 
                     // If the coreqs were not placed, try placing the next class on the list.
-                    if(!canPlace) {
+                    if (!canPlace) {
                         continue;
                     }
 
                     currentRows++;
                     currentColCount++;
                     addRow(semesters);
-                    if(type === ClassType.ROOT) {
+                    if (type === ClassType.ROOT) {
                         addRootTo((currentRows - 1) + "_" + currentCol, currentClass['id'], currentClass['title']);
                     } else {
                         addStandAloneTo((currentRows - 1) + "_" + currentCol, currentClass['id'], currentClass['title']);
@@ -385,25 +384,25 @@ function place_dynamic(info, semesters) {
 
                     let canPlace = true;
                     let coreqs = info.coreqs.get(currentClass['id']);
-                    if(coreqs !== undefined) {
-                        for(let j = 0; j < coreqs.length; j++) {
-                            if(!placed.includes(coreqs[j])) {
+                    if (coreqs !== undefined) {
+                        for (let j = 0; j < coreqs.length; j++) {
+                            if (!placed.includes(coreqs[j])) {
                                 canPlace = false;
                                 break;
                             }
                         }
                     }
 
-                    if(!canPlace) {
+                    if (!canPlace) {
                         continue;
                     }
 
                     let j = 0;
-                    for(j = 0; j < lastInRow.length; j++) {
+                    for (j = 0; j < lastInRow.length; j++) {
                         // noinspection JSObjectNullOrUndefined
-                        if(preReqs.includes(lastInRow[j])) break;
+                        if (preReqs.includes(lastInRow[j])) break;
                     }
-                    if(type === ClassType.LEAF) {
+                    if (type === ClassType.LEAF) {
                         addLeafTo(j + "_" + currentCol, currentClass['id'], currentClass['title'])
                     } else {
                         addBranchTo(j + "_" + currentCol, currentClass['id'], currentClass['title']);
@@ -417,22 +416,16 @@ function place_dynamic(info, semesters) {
     }
 
     // Finally, connect all prereqs to each other.
-    /* TODO:
-        This is a really poor way of drawing lines. The elements don't render instantly causing lines to
-        be drawn in the wrong place. Setting a timeout fixes this, but this is not a good fix.
-        gip20
-    */
+
     let k = info.prereqs.keys();
     let v = info.prereqs.values();
-    for(let i = 0; i < info.prereqs.size; i++) {
-        setTimeout(() => {
-            let curKey = k.next().value.toString();
-            let curVal = v.next().value;
-            curVal.forEach((vPos) => {
-                attachElements(document.getElementById(curKey), document.getElementById(vPos.toString()));
-            });
-            console.log("attaching " + curKey + " to " + curVal);
-        },200);
+    for (let i = 0; i < info.prereqs.size; i++) {
+        let curKey = k.next().value.toString();
+        let curVal = v.next().value;
+        curVal.forEach((vPos) => {
+            attachElements(document.getElementById(curKey), document.getElementById(vPos.toString()));
+        });
+        console.log("attaching " + curKey + " to " + curVal);
     }
 }
 
@@ -453,10 +446,10 @@ async function demo() {
     deleteCurrentLines();
     let info = await getInfo();
     let semesters = parseInt(document.getElementById("semesters").value);
-    if(isNaN(semesters) || semesters < info.minSemesters) {
+    if (isNaN(semesters) || semesters < info.minSemesters) {
         alert("Please enter a value greater than " + (info.minSemesters - 1) + " for this major.");
         return;
-    } else if(semesters > info.classes.length) {
+    } else if (semesters > info.classes.length) {
         alert("Too many semesters!!");
         return;
     }
