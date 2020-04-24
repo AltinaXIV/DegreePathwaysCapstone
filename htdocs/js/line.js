@@ -165,12 +165,26 @@ function attachElements(firstElement, secondElement, svgColor) {
             svg.appendChild(curve);
             currentPositionX += 5;
             currentPositionY += Math.min(heightDif / 2, 20);
-            if (height - currentPositionY > 6) {
-                line = createLine();
-                line = setLine(line, currentPositionX, currentPositionY, currentPositionX, height - 6);
-                currentPositionY = height - 6;
-                svg.appendChild(line);
-            }
+            line = createLine();
+            line = setLine(line, currentPositionX, currentPositionY, currentPositionX, currentPositionY + 17);
+            svg.appendChild(line);
+            currentPositionY += 17;
+            curve = createDownRightCurve(currentPositionX, currentPositionY, currentPositionY + 5);
+            svg.appendChild(curve);
+            currentPositionX += 20;
+            currentPositionY += 5;
+            line = createLine();
+            line = setLine(line, currentPositionX, currentPositionY, width - 30, currentPositionY);
+            svg.appendChild(line);
+            currentPositionX = width - 30;
+            curve = createRightDownCurve(currentPositionX, currentPositionY, 20);
+            svg.appendChild(curve);
+            currentPositionY += 10;
+            currentPositionX += 5
+            line = createLine();
+            line = setLine(line, currentPositionX, currentPositionY, currentPositionX, height - 5);
+            svg.appendChild(line);
+            currentPositionY = height - 5;
             curve = createDownRightCurve(currentPositionX, currentPositionY, Math.min(5, height - currentPositionY));
             currentPositionX += 20;
             currentPositionY += Math.min(5, height - currentPositionY);
@@ -180,7 +194,6 @@ function attachElements(firstElement, secondElement, svgColor) {
             svg.appendChild(line);
         } else {
             // Second element is higher than first
-
             currentPositionY = height;
             let line = createLine();
             line = setLine(line, currentPositionX, currentPositionY, currentPositionX + 20, currentPositionY);
@@ -191,12 +204,26 @@ function attachElements(firstElement, secondElement, svgColor) {
             currentPositionX += 5;
             currentPositionY -= Math.min(heightDif / 2, 20);
             currentPositionY = Math.max(currentPositionY, 6);
-            if (currentPositionY > 6) {
-                line = createLine();
-                line = setLine(line, currentPositionX, currentPositionY, currentPositionX, 6);
-                currentPositionY = 6;
-                svg.appendChild(line);
-            }
+            line = createLine();
+            line = setLine(line, currentPositionX, currentPositionY, currentPositionX, currentPositionY - 17);
+            svg.appendChild(line);
+            currentPositionY -= 17;
+            curve = createUpRightCurve(currentPositionX, currentPositionY);
+            svg.appendChild(curve);
+            currentPositionX += 20;
+            currentPositionY -= 5;
+            line = createLine();
+            line = setLine(line, currentPositionX, currentPositionY, width - 30, currentPositionY);
+            svg.appendChild(line);
+            currentPositionX = width - 30;
+            curve = createRightUpCurve(currentPositionX, currentPositionY, 20);
+            svg.appendChild(curve);
+            currentPositionY -= 10;
+            currentPositionX += 5
+            line = createLine();
+            line = setLine(line, currentPositionX, currentPositionY, currentPositionX, 5);
+            svg.appendChild(line);
+            currentPositionY = 5;
             curve = createUpRightCurve(currentPositionX, currentPositionY);
             currentPositionX += 20;
             currentPositionY -= 5;
